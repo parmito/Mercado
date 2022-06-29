@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/rc">
+        <file>android/assets/db/dbSqlite.db</file>
+        <file>android/assets/img/fruits.png</file>
+        <file>android/assets/img/trolley.png</file>
+        <file>android/assets/img/drawerButton.jpg</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>drawer.qml</file>
+    </qresource>
+</RCC>

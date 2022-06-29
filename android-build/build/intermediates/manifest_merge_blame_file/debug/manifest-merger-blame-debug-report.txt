@@ -1,0 +1,107 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="org.qt.mercado"
+4    android:installLocation="auto"
+5    android:versionCode="1"
+6    android:versionName="1.0" >
+7
+8    <uses-sdk
+9        android:minSdkVersion="23"
+9-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml
+10        android:targetSdkVersion="30" />
+10-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml
+11
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:3:5-67
+12-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:3:22-64
+13    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+13-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:4:5-81
+13-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:4:22-78
+14    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+14-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:5:5-79
+14-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:5:22-76
+15
+16    <supports-screens
+16-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:7:5-135
+17        android:anyDensity="true"
+17-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:7:23-48
+18        android:largeScreens="true"
+18-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:7:49-76
+19        android:normalScreens="true"
+19-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:7:77-105
+20        android:smallScreens="true" />
+20-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:7:106-133
+21
+22    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+22-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:19:1-75
+22-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:19:18-73
+23    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+23-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:4:5-81
+23-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:4:22-78
+24
+25    <application
+25-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:8:5-18:19
+26        android:name="org.qtproject.qt.android.bindings.QtApplication"
+26-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:8:18-80
+27        android:allowBackup="true"
+27-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:8:230-256
+28        android:allowNativeHeapPointerTagging="false"
+28-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:8:184-229
+29        android:debuggable="true"
+30        android:fullBackupOnly="false"
+30-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:8:257-287
+31        android:hardwareAccelerated="true"
+31-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:8:81-115
+32        android:icon="@drawable/icon"
+32-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:8:288-317
+33        android:label="Mercado"
+33-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:8:116-139
+34        android:requestLegacyExternalStorage="true" >
+34-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:8:140-183
+35        <activity
+35-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:9:9-17:20
+36            android:name="org.qtproject.qt.android.bindings.QtActivity"
+36-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:9:19-78
+37            android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
+37-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:9:79-248
+38            android:exported="true"
+38-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:9:344-367
+39            android:label="Mercado"
+39-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:9:249-272
+40            android:launchMode="singleTop"
+40-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:9:273-303
+41            android:screenOrientation="unspecified" >
+41-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:9:304-343
+42            <intent-filter>
+42-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:10:13-13:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:11:17-68
+43-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:11:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:12:17-76
+45-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:12:27-74
+46            </intent-filter>
+47
+48            <meta-data
+48-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:14:13-85
+49                android:name="android.app.lib_name"
+49-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:14:24-59
+50                android:value="Mercado" />
+50-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:14:60-83
+51            <meta-data
+51-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:15:13-79
+52                android:name="android.app.arguments"
+52-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:15:24-60
+53                android:value="" />
+53-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:15:61-77
+54            <meta-data
+54-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:16:13-98
+55                android:name="android.app.extract_android_style"
+55-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:16:24-72
+56                android:value="minimal" />
+56-->/disk/Qt-Workspace/Mercado/android-build/AndroidManifest.xml:16:73-96
+57        </activity>
+58    </application>
+59
+60</manifest>
