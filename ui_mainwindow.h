@@ -11,6 +11,7 @@
 
 #include <QtCore/QDate>
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
@@ -78,6 +79,8 @@ public:
     QLabel *m_Logo;
     QFrame *m_SideMenu_Frame;
     QLabel *m_label_Mercado;
+    QPushButton *m_pushButton_GraficoPrecos;
+    QLabel *m_Logo_2;
     QPushButton *m_pushButton_Drawer;
     QMenuBar *menubar;
     QStatusBar *statusbar;
@@ -171,11 +174,8 @@ public:
 "background-color: #fafa73;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"font: 18pt \"Ubuntu Thin\";\n"
 "padding: 16px 32px;\n"
-"text-decoration: none;\n"
-"margin: 4px 2px;\n"
-"cursor: pointer;"));
+"font: 42pt \"Ubuntu Thin\";"));
         m_ComboBox_Local->setModelColumn(0);
         m_ComboBox_Item = new QComboBox(groupBox_2);
         m_ComboBox_Item->setObjectName(QString::fromUtf8("m_ComboBox_Item"));
@@ -184,11 +184,8 @@ public:
 "background-color: #3ab7c9;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"font: 18pt \"Ubuntu Thin\";\n"
 "padding: 16px 32px;\n"
-"text-decoration: none;\n"
-"margin: 4px 2px;\n"
-"cursor: pointer;"));
+"font: 42pt \"Ubuntu Thin\";"));
         m_ComboBox_Price = new QComboBox(groupBox_2);
         m_ComboBox_Price->setObjectName(QString::fromUtf8("m_ComboBox_Price"));
         m_ComboBox_Price->setGeometry(QRect(20, 255, 310, 80));
@@ -196,11 +193,9 @@ public:
 "background-color: #fa7373;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"font: 18pt \"Ubuntu Thin\";\n"
 "padding: 16px 32px;\n"
-"text-decoration: none;\n"
-"margin: 4px 2px;\n"
-"cursor: pointer;"));
+"font: 42pt \"Ubuntu Thin\";\n"
+""));
         m_label_DiaMesAno_Escolher = new QLabel(groupBox_2);
         m_label_DiaMesAno_Escolher->setObjectName(QString::fromUtf8("m_label_DiaMesAno_Escolher"));
         m_label_DiaMesAno_Escolher->setGeometry(QRect(250, 10, 70, 20));
@@ -237,7 +232,7 @@ public:
         m_textEdit_Local->setBaseSize(QSize(0, 0));
         QFont font3;
         font3.setFamilies({QString::fromUtf8("Ubuntu Thin")});
-        font3.setPointSize(18);
+        font3.setPointSize(42);
         font3.setBold(false);
         font3.setItalic(false);
         font3.setUnderline(false);
@@ -249,10 +244,7 @@ public:
 "background-color: #fafa73;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"font: 18pt \"Ubuntu Thin\";\n"
-"padding: 4px 4px;\n"
-"margin: 4px 2px;\n"
-"cursor: pointer;"));
+"font: 42pt \"Ubuntu Thin\";"));
         m_textEdit_Local->setInputMethodHints(Qt::ImhNone);
         m_textEdit_Local->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_textEdit_Local->setTabChangesFocus(true);
@@ -264,10 +256,7 @@ public:
 "background-color: #3ab7c9;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"font: 18pt \"Ubuntu Thin\";\n"
-"padding: 4px 4px;\n"
-"margin: 4px 2px;\n"
-"cursor: pointer;"));
+"font: 42pt \"Ubuntu Thin\";"));
         m_textEdit_Item->setInputMethodHints(Qt::ImhLatinOnly);
         m_textEdit_Item->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_textEdit_Item->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -276,14 +265,12 @@ public:
         m_textEdit_Preco->setObjectName(QString::fromUtf8("m_textEdit_Preco"));
         m_textEdit_Preco->setGeometry(QRect(20, 255, 310, 80));
         m_textEdit_Preco->setFont(font3);
+        m_textEdit_Preco->viewport()->setProperty("cursor", QVariant(QCursor(Qt::ArrowCursor)));
         m_textEdit_Preco->setStyleSheet(QString::fromUtf8("width: 40%;\n"
 "background-color: #fa7373;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"font: 18pt \"Ubuntu Thin\";\n"
-"padding: 4px 4px;\n"
-"margin: 4px 2px;\n"
-"cursor: pointer;"));
+"font: 42pt \"Ubuntu Thin\";"));
         m_textEdit_Preco->setInputMethodHints(Qt::ImhFormattedNumbersOnly);
         m_textEdit_Preco->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_textEdit_Preco->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
@@ -519,9 +506,33 @@ public:
         m_SideMenu_Frame->setFrameShadow(QFrame::Raised);
         m_label_Mercado = new QLabel(m_SideMenu_Frame);
         m_label_Mercado->setObjectName(QString::fromUtf8("m_label_Mercado"));
-        m_label_Mercado->setGeometry(QRect(40, 670, 136, 51));
+        m_label_Mercado->setGeometry(QRect(30, 670, 136, 51));
         m_label_Mercado->setStyleSheet(QString::fromUtf8("font: 700 26pt \"KacstOne\";"));
-        m_pushButton_Drawer = new QPushButton(centralwidget);
+        m_pushButton_GraficoPrecos = new QPushButton(m_SideMenu_Frame);
+        m_pushButton_GraficoPrecos->setObjectName(QString::fromUtf8("m_pushButton_GraficoPrecos"));
+        m_pushButton_GraficoPrecos->setGeometry(QRect(10, 90, 171, 22));
+        QFont font7;
+        font7.setFamilies({QString::fromUtf8("Ubuntu Thin")});
+        font7.setPointSize(20);
+        font7.setBold(false);
+        font7.setItalic(false);
+        m_pushButton_GraficoPrecos->setFont(font7);
+        m_pushButton_GraficoPrecos->setStyleSheet(QString::fromUtf8("font: 20pt \"Ubuntu Thin\";\n"
+"background-color: #fafa73;"));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/rc/android/assets/img/graph.png"), QSize(), QIcon::Normal, QIcon::Off);
+        m_pushButton_GraficoPrecos->setIcon(icon);
+        m_pushButton_GraficoPrecos->setIconSize(QSize(32, 32));
+        m_pushButton_GraficoPrecos->setFlat(true);
+        m_Logo_2 = new QLabel(m_SideMenu_Frame);
+        m_Logo_2->setObjectName(QString::fromUtf8("m_Logo_2"));
+        m_Logo_2->setGeometry(QRect(65, 15, 56, 56));
+        m_Logo_2->setFrameShape(QFrame::Panel);
+        m_Logo_2->setFrameShadow(QFrame::Raised);
+        m_Logo_2->setLineWidth(1);
+        m_Logo_2->setPixmap(QPixmap(QString::fromUtf8(":/rc/android/assets/img/trolley.png")));
+        m_Logo_2->setScaledContents(true);
+        m_pushButton_Drawer = new QPushButton(m_SideMenu_Frame);
         m_pushButton_Drawer->setObjectName(QString::fromUtf8("m_pushButton_Drawer"));
         m_pushButton_Drawer->setGeometry(QRect(10, 15, 56, 56));
         MainWindow->setCentralWidget(centralwidget);
@@ -574,6 +585,8 @@ public:
         m_tabWidget_Main->setTabText(m_tabWidget_Main->indexOf(m_Tab_Hoje), QCoreApplication::translate("MainWindow", "Filtrar", nullptr));
         m_Logo->setText(QString());
         m_label_Mercado->setText(QCoreApplication::translate("MainWindow", "MERCADO", nullptr));
+        m_pushButton_GraficoPrecos->setText(QCoreApplication::translate("MainWindow", "Grafico Pre\303\247os", nullptr));
+        m_Logo_2->setText(QString());
         m_pushButton_Drawer->setText(QString());
     } // retranslateUi
 

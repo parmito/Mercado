@@ -14,7 +14,7 @@ EQ            = =
 
 CC            = /home/danilo/Android/Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/linux-x86_64/bin/clang
 CXX           = /home/danilo/Android/Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++
-DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_QMLMODELS_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DISABLE_DEPRECATED_BEFORE=0x060000 -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_QUICK_LIB -DQT_OPENGL_LIB -DQT_GUI_LIB -DQT_SQL_LIB -DQT_QMLMODELS_LIB -DQT_QML_LIB -DQT_QMLINTEGRATION_LIB -DQT_NETWORK_LIB -DQT_CORE_LIB
 CFLAGS        = -target aarch64-linux-android23 -fno-limit-debug-info -fPIC -fstack-protector-strong -DANDROID -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -target aarch64-linux-android23 -fno-limit-debug-info -fPIC -fstack-protector-strong -DANDROID -g -std=gnu++1z -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 INCPATH       = -I. -I../../Qt6/6.3.1/android_arm64_v8a/include -I../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets -I../../Qt6/6.3.1/android_arm64_v8a/include/QtQuick -I../../Qt6/6.3.1/android_arm64_v8a/include/QtOpenGL -I../../Qt6/6.3.1/android_arm64_v8a/include/QtGui -I../../Qt6/6.3.1/android_arm64_v8a/include/QtSql -I../../Qt6/6.3.1/android_arm64_v8a/include/QtQmlModels -I../../Qt6/6.3.1/android_arm64_v8a/include/QtQml -I../../Qt6/6.3.1/android_arm64_v8a/include/QtQmlIntegration -I../../Qt6/6.3.1/android_arm64_v8a/include/QtNetwork -I../../Qt6/6.3.1/android_arm64_v8a/include/QtCore -I. -I. -I../../Qt6/6.3.1/android_arm64_v8a/mkspecs/android-clang
@@ -626,6 +626,7 @@ qrc_qt.cpp: qt.qrc \
 		../../Qt6/6.3.1/gcc_64/libexec/rcc \
 		drawer.qml \
 		android/assets/db/dbSqlite.db \
+		android/assets/img/graph.png \
 		android/assets/img/drawerButton.jpg \
 		android/assets/img/trolley.png \
 		android/assets/img/fruits.png
@@ -990,6 +991,17 @@ moc_mainwindow.cpp: mainwindow.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qdatetime.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qcalendar.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qlocale.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/QStackedLayout \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qstackedlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qlayoutitem.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qboxlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qgridlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QPropertyAnimation \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qpropertyanimation.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qvariantanimation.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qabstractanimation.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qeasingcurve.h \
 		CustomQSqlTableModel.h \
 		dbmanager.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QString \
@@ -1013,12 +1025,6 @@ moc_mainwindow.cpp: mainwindow.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qbasictimer.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QTime \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QAbstractItemModel \
-		CustomPropertyAnimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QPropertyAnimation \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qpropertyanimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qvariantanimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qabstractanimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qeasingcurve.h \
 		moc_predefs.h \
 		../../Qt6/6.3.1/gcc_64/libexec/moc
 	/disk/Qt6/6.3.1/gcc_64/libexec/moc $(DEFINES) --include /disk/Qt-Workspace/Mercado/moc_predefs.h -I/disk/Qt6/6.3.1/android_arm64_v8a/mkspecs/android-clang -I/disk/Qt-Workspace/Mercado -I/disk/Qt6/6.3.1/android_arm64_v8a/include -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtWidgets -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtQuick -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtOpenGL -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtGui -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtSql -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtQmlModels -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtQml -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtQmlIntegration -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtNetwork -I/disk/Qt6/6.3.1/android_arm64_v8a/include/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/local/include -I/home/danilo/Android/Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include -I/usr/include/x86_64-linux-gnu -I/usr/include mainwindow.h -o moc_mainwindow.cpp
@@ -1585,6 +1591,17 @@ main.o: main.cpp mainwindow.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qdatetime.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qcalendar.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qlocale.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/QStackedLayout \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qstackedlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qlayoutitem.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qboxlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qgridlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QPropertyAnimation \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qpropertyanimation.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qvariantanimation.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qabstractanimation.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qeasingcurve.h \
 		CustomQSqlTableModel.h \
 		dbmanager.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QString \
@@ -1608,12 +1625,6 @@ main.o: main.cpp mainwindow.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qbasictimer.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QTime \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QAbstractItemModel \
-		CustomPropertyAnimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QPropertyAnimation \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qpropertyanimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qvariantanimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qabstractanimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qeasingcurve.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/QApplication \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qapplication.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtGui/qguiapplication.h \
@@ -1851,6 +1862,17 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qdatetime.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qcalendar.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qlocale.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/QStackedLayout \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qstackedlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qlayoutitem.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qboxlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qgridlayout.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QPropertyAnimation \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qpropertyanimation.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qvariantanimation.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qabstractanimation.h \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qeasingcurve.h \
 		CustomQSqlTableModel.h \
 		dbmanager.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QString \
@@ -1874,15 +1896,10 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qbasictimer.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QTime \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QAbstractItemModel \
-		CustomPropertyAnimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QPropertyAnimation \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qpropertyanimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qvariantanimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qabstractanimation.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/qeasingcurve.h \
 		ui_mainwindow.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QDate \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtCore/QVariant \
+		../../Qt6/6.3.1/android_arm64_v8a/include/QtGui/QIcon \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/QApplication \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qapplication.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtGui/qguiapplication.h \
@@ -1906,10 +1923,6 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/QFormLayout \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qformlayout.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/QLayout \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qlayout.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qlayoutitem.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qboxlayout.h \
-		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qgridlayout.h \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/QFrame \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/QGroupBox \
 		../../Qt6/6.3.1/android_arm64_v8a/include/QtWidgets/qgroupbox.h \

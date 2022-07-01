@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    ui->m_textEdit_Local->setAlignment(Qt::AlignmentFlag::AlignLeft | Qt::AlignmentFlag::AlignBottom);
+
     /* Findout Screen Size*/
     QScreen *screen = QGuiApplication::primaryScreen();
     QRect  screenGeometry = screen->geometry();
@@ -86,7 +89,11 @@ MainWindow::MainWindow(QWidget *parent)
     QDate today = QDate::currentDate();
     ui->m_dateEdit_HL->setDate(today);
 
-
+    /*
+     *
+     *  Qml Object
+     *
+     */
     /*QHBoxLayout *layout = new QHBoxLayout(this);
     QQuickView *qmlView = new QQuickView();
     qmlView->setSource(QUrl(QStringLiteral("qrc:/drawer.qml")));
@@ -97,8 +104,19 @@ MainWindow::MainWindow(QWidget *parent)
     m_AnimationSideMenu = new QPropertyAnimation(ui->m_SideMenu_Frame, "size");
     m_AnimationSideMenu->setEasingCurve(QEasingCurve::InOutCubic);
     m_AnimationSideMenu->setDuration(500);
-
+    /*QObject::connect(m_AnimationSideMenu,SIGNAL(stateChanged(int,int)),this,SLOT(SideMenuAnimationStarted()));*/
     QObject::connect(m_AnimationSideMenu,SIGNAL(finished()),this,SLOT(SideMenuAnimationFinished()));
+
+
+    /*
+     *
+     *  Stecked Layout
+     *
+     */
+    /*QStackedLayout *stackedLayout = new QStackedLayout;
+    stackedLayout->setGeometry(QRect(0,0,200,735));
+    stackedLayout->addWidget(ui->m_SideMenu_Frame);*/
+
 
     Qt::GestureType gesture(Qt::SwipeGesture);
     ui->centralwidget->grabGesture(gesture,Qt::GestureFlags());
@@ -114,18 +132,36 @@ MainWindow::MainWindow(QWidget *parent)
     ui->m_pushButton_Drawer->setIconSize(pixmap.rect().size());
 }
 
+/* SLOT for QPropertyAnimation*/
+/*void MainWindow::SideMenuAnimationStarted()
+{
+    qDebug() <<" Side Menu Animation started:" << m_SideMenuStatus;
+    switch(m_SideMenuStatus)
+    {
+    case enOPENED:
+        ui->m_tabWidget_Main->setDisabled(true);
+        ui->m_pushButton_Drawer->setVisible(false);
+        break;
+
+    case enCLOSED:
+        break;
+    }
+}*/
+
+/* SLOT for QPropertyAnimation*/
 void MainWindow::SideMenuAnimationFinished()
 {
     qDebug() <<" Side Menu Animation finished:" << m_SideMenuStatus;
     switch(m_SideMenuStatus)
     {
         case enOPENED:
-            ui->m_label_Mercado->setVisible(true);
+            /*ui->m_label_Mercado->setVisible(true);*/
             break;
 
         case enCLOSED:
             ui->m_pushButton_Drawer->setVisible(true);
-            ui->m_label_Mercado->setVisible(false);
+            /*ui->m_label_Mercado->setVisible(false);*/
+            ui->m_tabWidget_Main->setDisabled(false);
             break;
     }
 }
@@ -133,17 +169,21 @@ void MainWindow::SideMenuAnimationFinished()
 void MainWindow::SideMenuAnimation(tenSideMenuStatus status)
 {
     m_AnimationSideMenu->stop();
+
     auto const current = ui->m_SideMenu_Frame->size();
     m_AnimationSideMenu->setStartValue(current);
+
+    m_SideMenuStatus = status;
     switch(status)
     {
         case enOPENED:
         if (ui->m_SideMenu_Frame->width() < 200)
-            {               
+            {
                 m_AnimationSideMenu->setEndValue(QSize(200, current.height()));
                 m_AnimationSideMenu->start();
                 m_EndPointDrawer->setX(200);
                 iHoverEventCnt = 2;
+                ui->m_tabWidget_Main->setDisabled(true);
                 ui->m_pushButton_Drawer->setVisible(false);
             }
             break;
@@ -157,7 +197,6 @@ void MainWindow::SideMenuAnimation(tenSideMenuStatus status)
             }
             break;
     }
-    m_SideMenuStatus = status;
 }
 
 
@@ -499,5 +538,38 @@ void MainWindow::on_m_pushButton_Filtrar_clicked()
 void MainWindow::on_m_pushButton_Drawer_clicked()
 {
     this->SideMenuAnimation(enOPENED);
+}
+
+
+void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
+{
+    QDialog *Dblack = new QDialog();
+    QVBoxLayout *vlayout = new QVBoxLayout;
+    Dblack->setFixedSize(300,280);
+    QLabel *label = new QLabel("Copy Right @ UESTC-CCSE wytk2008.net");
+    QAbstractButton *bExit = new QPushButton("back");
+
+
+    QLineSeries *series = new QLineSeries();
+    series->append(0, 6);
+    series->append(2, 4);
+    series->append(3, 8);
+    series->append(7, 4);
+    series->append(10, 5);
+    QChart *chart = new QChart();
+    chart->legend()->hide();
+    chart->addSeries(series);
+    chart->createDefaultAxes();
+    chart->setTitle("Simple line chart example");
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+
+    vlayout->addWidget(chartView);
+    vlayout->addWidget(label);
+    vlayout->addWidget(bExit);
+    Dblack->setLayout(vlayout);
+    Dblack->show();
+    Dblack->connect(bExit,SIGNAL(clicked()),Dblack,SLOT(close()));
 }
 

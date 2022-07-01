@@ -4,6 +4,7 @@
         <file>android/assets/img/fruits.png</file>
         <file>android/assets/img/trolley.png</file>
         <file>android/assets/img/drawerButton.jpg</file>
+        <file>android/assets/img/graph.png</file>
     </qresource>
     <qresource prefix="/">
         <file>drawer.qml</file>

@@ -188,11 +188,8 @@ cursor: pointer;</string>
 background-color: #fafa73;
 border-radius: 8px;
 color: black;
-font: 18pt &quot;Ubuntu Thin&quot;;
 padding: 16px 32px;
-text-decoration: none;
-margin: 4px 2px;
-cursor: pointer;</string>
+font: 42pt &quot;Ubuntu Thin&quot;;</string>
        </property>
        <property name="modelColumn">
         <number>0</number>
@@ -212,11 +209,8 @@ cursor: pointer;</string>
 background-color: #3ab7c9;
 border-radius: 8px;
 color: black;
-font: 18pt &quot;Ubuntu Thin&quot;;
 padding: 16px 32px;
-text-decoration: none;
-margin: 4px 2px;
-cursor: pointer;</string>
+font: 42pt &quot;Ubuntu Thin&quot;;</string>
        </property>
       </widget>
       <widget class="QComboBox" name="m_ComboBox_Price">
@@ -233,11 +227,9 @@ cursor: pointer;</string>
 background-color: #fa7373;
 border-radius: 8px;
 color: black;
-font: 18pt &quot;Ubuntu Thin&quot;;
 padding: 16px 32px;
-text-decoration: none;
-margin: 4px 2px;
-cursor: pointer;</string>
+font: 42pt &quot;Ubuntu Thin&quot;;
+</string>
        </property>
       </widget>
       <widget class="QLabel" name="m_label_DiaMesAno_Escolher">
@@ -324,7 +316,7 @@ cursor: pointer;</string>
        <property name="font">
         <font>
          <family>Ubuntu Thin</family>
-         <pointsize>18</pointsize>
+         <pointsize>42</pointsize>
          <italic>false</italic>
          <bold>false</bold>
          <underline>false</underline>
@@ -340,10 +332,7 @@ cursor: pointer;</string>
 background-color: #fafa73;
 border-radius: 8px;
 color: black;
-font: 18pt &quot;Ubuntu Thin&quot;;
-padding: 4px 4px;
-margin: 4px 2px;
-cursor: pointer;</string>
+font: 42pt &quot;Ubuntu Thin&quot;;</string>
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
@@ -367,7 +356,7 @@ cursor: pointer;</string>
        <property name="font">
         <font>
          <family>Ubuntu Thin</family>
-         <pointsize>18</pointsize>
+         <pointsize>42</pointsize>
          <italic>false</italic>
          <bold>false</bold>
          <underline>false</underline>
@@ -380,10 +369,7 @@ cursor: pointer;</string>
 background-color: #3ab7c9;
 border-radius: 8px;
 color: black;
-font: 18pt &quot;Ubuntu Thin&quot;;
-padding: 4px 4px;
-margin: 4px 2px;
-cursor: pointer;</string>
+font: 42pt &quot;Ubuntu Thin&quot;;</string>
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhLatinOnly</set>
@@ -410,7 +396,7 @@ cursor: pointer;</string>
        <property name="font">
         <font>
          <family>Ubuntu Thin</family>
-         <pointsize>18</pointsize>
+         <pointsize>42</pointsize>
          <italic>false</italic>
          <bold>false</bold>
          <underline>false</underline>
@@ -418,15 +404,15 @@ cursor: pointer;</string>
          <kerning>true</kerning>
         </font>
        </property>
+       <property name="cursor" stdset="0">
+        <cursorShape>ArrowCursor</cursorShape>
+       </property>
        <property name="styleSheet">
         <string notr="true">width: 40%;
 background-color: #fa7373;
 border-radius: 8px;
 color: black;
-font: 18pt &quot;Ubuntu Thin&quot;;
-padding: 4px 4px;
-margin: 4px 2px;
-cursor: pointer;</string>
+font: 42pt &quot;Ubuntu Thin&quot;;</string>
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhFormattedNumbersOnly</set>
@@ -926,7 +912,7 @@ cursor: pointer;</string>
     <widget class="QLabel" name="m_label_Mercado">
      <property name="geometry">
       <rect>
-       <x>40</x>
+       <x>30</x>
        <y>670</y>
        <width>136</width>
        <height>51</height>
@@ -939,19 +925,85 @@ cursor: pointer;</string>
       <string>MERCADO</string>
      </property>
     </widget>
-   </widget>
-   <widget class="QPushButton" name="m_pushButton_Drawer">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>15</y>
-      <width>56</width>
-      <height>56</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
+    <widget class="QPushButton" name="m_pushButton_GraficoPrecos">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>90</y>
+       <width>171</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Ubuntu Thin</family>
+       <pointsize>20</pointsize>
+       <italic>false</italic>
+       <bold>false</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">font: 20pt &quot;Ubuntu Thin&quot;;
+background-color: #fafa73;</string>
+     </property>
+     <property name="text">
+      <string>Grafico Preços</string>
+     </property>
+     <property name="icon">
+      <iconset resource="qt.qrc">
+       <normaloff>:/rc/android/assets/img/graph.png</normaloff>:/rc/android/assets/img/graph.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>32</width>
+       <height>32</height>
+      </size>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="m_Logo_2">
+     <property name="geometry">
+      <rect>
+       <x>65</x>
+       <y>15</y>
+       <width>56</width>
+       <height>56</height>
+      </rect>
+     </property>
+     <property name="frameShape">
+      <enum>QFrame::Panel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <property name="lineWidth">
+      <number>1</number>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="qt.qrc">:/rc/android/assets/img/trolley.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="m_pushButton_Drawer">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>15</y>
+       <width>56</width>
+       <height>56</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

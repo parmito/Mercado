@@ -13,10 +13,14 @@
 #include <QFile>
 #include <QGestureEvent>
 #include <QObject>
+#include <QStackedLayout>
+#include <QPropertyAnimation>
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
 #include "CustomQSqlTableModel.h"
 #include "dbmanager.h"
 #include "itemtabledb.h"
-#include "CustomPropertyAnimation.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -44,6 +48,9 @@ private slots:
     void on_m_pushButton_Drawer_clicked();
 
     void SideMenuAnimationFinished();
+    /*void SideMenuAnimationStarted();*/
+
+    void on_m_pushButton_GraficoPrecos_clicked();
 
 private:
     Ui::MainWindow *ui;
