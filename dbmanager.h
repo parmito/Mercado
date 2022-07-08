@@ -11,7 +11,7 @@
 #include <QStringList>
 #include <QDateTime>
 
-#define DATABASE "dbSqlite.db"
+#define DATABASE "Mercado.db"
 #define TABLE "itemTable"
 
 class DBManager

@@ -9,12 +9,12 @@
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
 
+#include <QCustomDateEdit.h>
 #include <QtCore/QDate>
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QDateEdit>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGroupBox>
@@ -68,7 +68,7 @@ public:
     QHBoxLayout *horizontalLayout;
     QComboBox *m_ComboBoxItem_HL;
     QComboBox *m_ComboBoxPrice_HL;
-    QDateEdit *m_dateEdit_HL;
+    QCustomDateEdit *m_DateEdit;
     QComboBox *m_ComboBoxLocal_HL;
     QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_2;
@@ -351,13 +351,13 @@ public:
         m_Frame_Hoje->setStyleSheet(QString::fromUtf8("background-color: #dddddd;\n"
 "border-radius: 8px;\n"
 "color: #444444;\n"
-"font: 14pt \"Ubuntu Condensed\";\n"
+"font: 20pt \"Ubuntu Condensed\";\n"
 "text-decoration: none;\n"
 "margin: 4px 2px;\n"
 "cursor: pointer;"));
         m_tableView_Today = new QTableView(m_Frame_Hoje);
         m_tableView_Today->setObjectName(QString::fromUtf8("m_tableView_Today"));
-        m_tableView_Today->setGeometry(QRect(10, 85, 325, 250));
+        m_tableView_Today->setGeometry(QRect(10, 85, 335, 250));
         m_tableView_Today->setAutoFillBackground(true);
         m_tableView_Today->setStyleSheet(QString::fromUtf8(""));
         m_pushButton_Filtrar = new QPushButton(m_Frame_Hoje);
@@ -380,7 +380,7 @@ public:
         formLayout->setContentsMargins(0, 0, 0, 0);
         layoutWidget = new QWidget(m_Frame_Hoje);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(5, 30, 341, 50));
+        layoutWidget->setGeometry(QRect(5, 30, 341, 58));
         horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
@@ -414,10 +414,15 @@ public:
 
         horizontalLayout->addWidget(m_ComboBoxPrice_HL);
 
-        m_dateEdit_HL = new QDateEdit(layoutWidget);
-        m_dateEdit_HL->setObjectName(QString::fromUtf8("m_dateEdit_HL"));
-        m_dateEdit_HL->setMaximumSize(QSize(16777215, 120));
-        m_dateEdit_HL->setStyleSheet(QString::fromUtf8("width:40%;\n"
+        m_DateEdit = new QCustomDateEdit(layoutWidget);
+        m_DateEdit->setObjectName(QString::fromUtf8("m_DateEdit"));
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(m_DateEdit->sizePolicy().hasHeightForWidth());
+        m_DateEdit->setSizePolicy(sizePolicy1);
+        m_DateEdit->setMaximumSize(QSize(80, 70));
+        m_DateEdit->setStyleSheet(QString::fromUtf8("width: 40%;\n"
 "height:40%;\n"
 "background-color: #ca7373;\n"
 "border-radius: 4px;\n"
@@ -426,10 +431,12 @@ public:
 "text-decoration: none;\n"
 "margin: 4px 2px;\n"
 "cursor: pointer;"));
-        m_dateEdit_HL->setMinimumDate(QDate(2020, 1, 1));
-        m_dateEdit_HL->setCalendarPopup(true);
+        m_DateEdit->setFrame(true);
+        m_DateEdit->setButtonSymbols(QAbstractSpinBox::NoButtons);
+        m_DateEdit->setDateTime(QDateTime(QDate(2020, 1, 1), QTime(0, 0, 0)));
+        m_DateEdit->setMinimumDate(QDate(2020, 1, 1));
 
-        horizontalLayout->addWidget(m_dateEdit_HL);
+        horizontalLayout->addWidget(m_DateEdit);
 
         m_ComboBoxLocal_HL = new QComboBox(layoutWidget);
         m_ComboBoxLocal_HL->setObjectName(QString::fromUtf8("m_ComboBoxLocal_HL"));
@@ -490,7 +497,7 @@ public:
         m_Logo->setObjectName(QString::fromUtf8("m_Logo"));
         m_Logo->setGeometry(QRect(310, 15, 56, 56));
         m_Logo->setFrameShape(QFrame::Panel);
-        m_Logo->setFrameShadow(QFrame::Raised);
+        m_Logo->setFrameShadow(QFrame::Sunken);
         m_Logo->setLineWidth(1);
         m_Logo->setPixmap(QPixmap(QString::fromUtf8(":/rc/android/assets/img/trolley.png")));
         m_Logo->setScaledContents(true);
@@ -532,9 +539,11 @@ public:
         m_Logo_2->setLineWidth(1);
         m_Logo_2->setPixmap(QPixmap(QString::fromUtf8(":/rc/android/assets/img/trolley.png")));
         m_Logo_2->setScaledContents(true);
-        m_pushButton_Drawer = new QPushButton(m_SideMenu_Frame);
+        m_pushButton_Drawer = new QPushButton(centralwidget);
         m_pushButton_Drawer->setObjectName(QString::fromUtf8("m_pushButton_Drawer"));
         m_pushButton_Drawer->setGeometry(QRect(10, 15, 56, 56));
+        m_pushButton_Drawer->setStyleSheet(QString::fromUtf8(""));
+        m_pushButton_Drawer->setAutoDefault(true);
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
@@ -555,7 +564,8 @@ public:
 
         retranslateUi(MainWindow);
 
-        m_tabWidget_Main->setCurrentIndex(1);
+        m_tabWidget_Main->setCurrentIndex(2);
+        m_pushButton_Drawer->setDefault(true);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -577,7 +587,6 @@ public:
         m_label_DiaMesAno->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", nullptr));
         m_tabWidget_Main->setTabText(m_tabWidget_Main->indexOf(m_Tab_Editar), QCoreApplication::translate("MainWindow", "Editar", nullptr));
         m_pushButton_Filtrar->setText(QCoreApplication::translate("MainWindow", "Filtrar", nullptr));
-        m_dateEdit_HL->setDisplayFormat(QCoreApplication::translate("MainWindow", "dd-MM-yyyy", nullptr));
         m_LabelItem_HL->setText(QCoreApplication::translate("MainWindow", "Item", nullptr));
         m_LabelPrice_HL->setText(QCoreApplication::translate("MainWindow", "Pre\303\247os", nullptr));
         m_LabelDate_HL->setText(QCoreApplication::translate("MainWindow", "Dia", nullptr));

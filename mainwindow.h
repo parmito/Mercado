@@ -15,8 +15,9 @@
 #include <QObject>
 #include <QStackedLayout>
 #include <QPropertyAnimation>
-#include <QtCharts/QChartView>
-#include <QtCharts/QLineSeries>
+#include <QtCharts>
+#include <QChartView>
+#include <QLineSeries>
 #include "CustomQSqlTableModel.h"
 #include "dbmanager.h"
 #include "itemtabledb.h"
@@ -52,6 +53,18 @@ private slots:
 
     void on_m_pushButton_GraficoPrecos_clicked();
 
+    void on_pushButton_clicked();
+
+    void on_m_PushButton_QDate_clicked();
+
+    //void on_CalendarWidget_Changed();
+    void on_CalendarWidget_Changed(const QDate& date);
+
+
+    void on_m_DateEdit_onClick();
+
+    void on_m_DateEdit_userDateChanged(const QDate &date);
+
 private:
     Ui::MainWindow *ui;
     /* Also present are two methods that form
@@ -75,5 +88,6 @@ private:
     QPointF *m_StartPointDrawer, *m_EndPointDrawer, *m_CurrPointDrawer;
     int iHoverEventCnt;
     tenSideMenuStatus m_SideMenuStatus;
+    QCalendarWidget *m_CalendarWidget;
 };
 #endif // MAINWINDOW_H

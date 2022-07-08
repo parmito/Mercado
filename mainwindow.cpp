@@ -21,16 +21,18 @@ MainWindow::MainWindow(QWidget *parent)
     qDebug() << "Height" << height;
 
     /* Create Database*/
-    /*QString path = QStandardPaths::writableLocation( QStandardPaths::StandardLocation::DataLocation);
-    db = new DBManager(path);*/
+    QString path = QStandardPaths::writableLocation( QStandardPaths::StandardLocation::DownloadLocation);
+    qDebug() <<"Path:"<< path;
 
-    QFile dfile("assets:/db/dbSqlite.db");
+    db = new DBManager(path);
+
+    /*QFile dfile("assets:/db/dbSqlite.db");
     if (dfile.exists())
     {
         dfile.copy("./dbSqlite.db");
         QFile::setPermissions("./dbSqlite.db",QFile::WriteOwner | QFile::ReadOwner);
     }
-    db = new DBManager("./");
+    db = new DBManager("./");*/
 
 
     QList<QString> strListResult;
@@ -87,7 +89,7 @@ MainWindow::MainWindow(QWidget *parent)
                                             "}");*/
 
     QDate today = QDate::currentDate();
-    ui->m_dateEdit_HL->setDate(today);
+    ui->m_DateEdit->setDate(today);
 
     /*
      *
@@ -130,7 +132,13 @@ MainWindow::MainWindow(QWidget *parent)
     QIcon ButtonIcon(pixmap);
     ui->m_pushButton_Drawer->setIcon(ButtonIcon);
     ui->m_pushButton_Drawer->setIconSize(pixmap.rect().size());
+
+    m_CalendarWidget = new QCalendarWidget();
+
+    QObject::connect(ui->m_DateEdit,SIGNAL(clicked()),this, SLOT(on_m_PushButton_QDate_clicked()));
 }
+
+
 
 /* SLOT for QPropertyAnimation*/
 /*void MainWindow::SideMenuAnimationStarted()
@@ -509,7 +517,7 @@ void MainWindow::on_m_pushButton_Filtrar_clicked()
     qstrMapSqlFilter.insert({"item",ui->m_ComboBoxItem_HL->currentText()});
     qstrMapSqlFilter.insert({"price",ui->m_ComboBoxPrice_HL->currentText()});
     qstrMapSqlFilter.insert({"local",ui->m_ComboBoxLocal_HL->currentText()});
-    QString strDate = ui->m_dateEdit_HL->text();
+    QString strDate = ui->m_DateEdit->text();
     qstrMapSqlFilter.insert({"date",strDate});
 
     for (const auto& [key, value] : qstrMapSqlFilter)
@@ -572,4 +580,39 @@ void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
     Dblack->show();
     Dblack->connect(bExit,SIGNAL(clicked()),Dblack,SLOT(close()));
 }
+
+void MainWindow::on_m_PushButton_QDate_clicked()
+{
+    QDialog *m_Dialog = new QDialog();
+    m_Dialog->setFixedSize(300,300);
+
+    QVBoxLayout *m_VBoxLayout = new QVBoxLayout;
+
+
+    m_CalendarWidget->setDateTextFormat (QDate(2020,1,1),QTextCharFormat());
+    QAbstractButton *m_ExitButton = new QPushButton("Exit");
+
+    m_VBoxLayout->addWidget(m_CalendarWidget);
+    m_VBoxLayout->addWidget(m_ExitButton);
+
+    m_Dialog->setLayout(m_VBoxLayout);
+    m_Dialog->show();
+    m_Dialog->connect(m_ExitButton,SIGNAL(clicked()),m_Dialog,SLOT(close()));        
+    QObject::connect(m_CalendarWidget,SIGNAL(clicked(const QDate&)),this, SLOT(on_CalendarWidget_Changed(const QDate&)));
+
+}
+
+void MainWindow::on_CalendarWidget_Changed(const QDate& date)
+{
+    ui->m_DateEdit->setDate(date);
+}
+
+
+
+
+
+
+
+
+
 

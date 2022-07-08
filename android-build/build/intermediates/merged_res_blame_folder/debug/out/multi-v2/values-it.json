@@ -4,7 +4,7 @@
             "outputFile": "/disk/Qt-Workspace/Mercado/android-build/build/intermediates/incremental/mergeDebugResources/merged.dir/values-it/values-it.xml",
             "map": [
                 {
-                    "source": "/disk/Qt6/6.3.1/android_arm64_v8a/src/android/java/res/values-it/strings.xml",
+                    "source": "/disk/Qt6.3/6.3.1/android_arm64_v8a/src/android/java/res/values-it/strings.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",

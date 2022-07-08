@@ -1,6 +1,6 @@
-QT       += core gui sql
+QT       += core gui sql charts
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets qml quick gui core sql
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets qml quick gui core sql charts
 
 CONFIG += c++17
 
@@ -10,6 +10,7 @@ DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs depr
 
 SOURCES += \
     CustomQSqlTableModel.cpp \
+    QCustomDateEdit.cpp \
     dbmanager.cpp \
     itemtabledb.cpp \
     main.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
 
 HEADERS += \
     CustomQSqlTableModel.h \
+    QCustomDateEdit.h \
     dbmanager.h \
     itemtabledb.h \
     mainwindow.h

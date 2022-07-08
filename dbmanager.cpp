@@ -3,7 +3,7 @@
 DBManager::DBManager(const QString& path)
 {
     m_db = QSqlDatabase::addDatabase("QSQLITE");
-    m_db.setDatabaseName(path + DATABASE);
+    m_db.setDatabaseName(path + "/" + DATABASE);
 
     if (!m_db.open())
     {

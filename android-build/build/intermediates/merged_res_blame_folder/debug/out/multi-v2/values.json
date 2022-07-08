@@ -4,37 +4,39 @@
             "outputFile": "/disk/Qt-Workspace/Mercado/android-build/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
             "map": [
                 {
-                    "source": "/disk/Qt6/6.3.1/android_arm64_v8a/src/android/java/res/values/strings.xml",
+                    "source": "/disk/Qt6.3/6.3.1/android_arm64_v8a/src/android/java/res/values/strings.xml",
                     "from": {
-                        "startLines": "-1,-1",
-                        "startColumns": "-1,-1",
-                        "startOffsets": "-1,-1"
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "85,193",
+                        "endColumns": "107,97",
+                        "endOffsets": "188,286"
                     },
                     "to": {
-                        "startLines": "26,28",
+                        "startLines": "28,30",
                         "startColumns": "4,4",
-                        "startOffsets": "1118,1267",
+                        "startOffsets": "1227,1376",
                         "endColumns": "107,97",
-                        "endOffsets": "1221,1360"
+                        "endOffsets": "1330,1469"
                     }
                 },
                 {
                     "source": "/disk/Qt-Workspace/Mercado/android-build/res/values/libs.xml",
                     "from": {
-                        "startLines": "-1,-1,8,-1,-1,-1",
-                        "startColumns": "-1,-1,4,-1,-1,-1",
-                        "startOffsets": "-1,-1,203,-1,-1,-1",
-                        "endLines": "-1,-1,24,-1,-1,-1",
-                        "endColumns": "-1,-1,12,-1,-1,-1",
-                        "endOffsets": "-1,-1,1030,-1,-1,-1"
+                        "startLines": "4,28,8,34,32,33",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "148,1145,203,1369,1272,1321",
+                        "endLines": "6,30,26,34,32,33",
+                        "endColumns": "12,12,12,50,48,47",
+                        "endOffsets": "197,1266,1139,1415,1316,1364"
                     },
                     "to": {
-                        "startLines": "2,5,8,25,27,29",
+                        "startLines": "2,5,8,27,29,31",
                         "startColumns": "4,4,4,4,4,4",
-                        "startOffsets": "55,109,235,1067,1226,1365",
-                        "endLines": "4,7,24,25,27,29",
+                        "startOffsets": "55,109,235,1176,1335,1474",
+                        "endLines": "4,7,26,27,29,31",
                         "endColumns": "12,12,12,50,40,47",
-                        "endOffsets": "104,230,1062,1113,1262,1408"
+                        "endOffsets": "104,230,1171,1222,1371,1517"
                     }
                 }
             ]
