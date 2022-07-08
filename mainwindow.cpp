@@ -135,7 +135,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_CalendarWidget = new QCalendarWidget();
 
-    QObject::connect(ui->m_DateEdit,SIGNAL(clicked()),this, SLOT(on_m_PushButton_QDate_clicked()));
+    QObject::connect(ui->m_DateEdit,SIGNAL(clicked()),this, SLOT(on_QDate_clicked()));
 }
 
 
@@ -352,7 +352,7 @@ void MainWindow::createUI()
     ui->m_tableView_Today->setEditTriggers(QAbstractItemView::NoEditTriggers);
     ui->m_tableView_Today->horizontalHeader()->setStretchLastSection(true);
 
-    ui->m_tableView_Today->setAlternatingRowColors(false);
+    ui->m_tableView_Today->setAlternatingRowColors(true);
     ui->m_tableView_Today->horizontalHeader()->setStyleSheet("QHeaderView{"
                                          "background-color: rgb(250, 115, 115);"
                                          "font-size: 14px;"
@@ -361,7 +361,6 @@ void MainWindow::createUI()
 
     ui->m_tableView_Today->setStyleSheet("QTableView{"
                                          "background-color: rgb(250, 250, 115);"
-                                         "font-weight: bold;"
                                          "alternate-background-color: rgb(250, 115, 115);"
                                          "font-size: 12px;"
                                          "}");
@@ -514,6 +513,8 @@ void MainWindow::on_m_pushButton_Filtrar_clicked()
     std::map<QString,QString> qstrMapSqlFilter;
     QString strSqliteFilterClause;
 
+    qstrMapSqlFilter.clear();
+
     qstrMapSqlFilter.insert({"item",ui->m_ComboBoxItem_HL->currentText()});
     qstrMapSqlFilter.insert({"price",ui->m_ComboBoxPrice_HL->currentText()});
     qstrMapSqlFilter.insert({"local",ui->m_ComboBoxLocal_HL->currentText()});
@@ -525,22 +526,19 @@ void MainWindow::on_m_pushButton_Filtrar_clicked()
         qDebug()<< '[' << key << "] = " << value << "; ";
     }
     strSqliteFilterClause.append("date=\'"+qstrMapSqlFilter["date"]+"\'");
-    strSqliteFilterClause.append(" AND " "item=\'"+qstrMapSqlFilter["item"]+"\'");
-    strSqliteFilterClause.append(" AND " "local=\'"+qstrMapSqlFilter["local"]+"\'");
+    //strSqliteFilterClause.append(" AND " "item=\'"+qstrMapSqlFilter["item"]+"\'");
+    //strSqliteFilterClause.append(" AND " "local=\'"+qstrMapSqlFilter["local"]+"\'");
 
     float flMin = ui->m_ComboBoxPrice_HL->currentText().toFloat();
     flMin = (flMin*100)/100;
     QString qstrFloatMin =QString::number(flMin);
 
-    strSqliteFilterClause.append(" AND price=" + qstrFloatMin);
+    //strSqliteFilterClause.append(" AND price=" + qstrFloatMin);
 
     qDebug() << strSqliteFilterClause;
 
     model->setFilter(strSqliteFilterClause);   
     model->select(); /* Fetches the data from the table*/
-
-    qstrMapSqlFilter.clear();
-
 }
 
 void MainWindow::on_m_pushButton_Drawer_clicked()
@@ -581,7 +579,7 @@ void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
     Dblack->connect(bExit,SIGNAL(clicked()),Dblack,SLOT(close()));
 }
 
-void MainWindow::on_m_PushButton_QDate_clicked()
+void MainWindow::on_QDate_clicked()
 {
     QDialog *m_Dialog = new QDialog();
     m_Dialog->setFixedSize(300,300);

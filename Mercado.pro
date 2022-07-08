@@ -12,7 +12,6 @@ SOURCES += \
     CustomQSqlTableModel.cpp \
     QCustomDateEdit.cpp \
     dbmanager.cpp \
-    itemtabledb.cpp \
     main.cpp \
     mainwindow.cpp
 
@@ -20,7 +19,6 @@ HEADERS += \
     CustomQSqlTableModel.h \
     QCustomDateEdit.h \
     dbmanager.h \
-    itemtabledb.h \
     mainwindow.h
 
 FORMS += \

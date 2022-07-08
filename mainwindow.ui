@@ -32,8 +32,8 @@
      <rect>
       <x>5</x>
       <y>80</y>
-      <width>365</width>
-      <height>745</height>
+      <width>361</width>
+      <height>1300</height>
      </rect>
     </property>
     <property name="font">
@@ -189,7 +189,7 @@ background-color: #fafa73;
 border-radius: 8px;
 color: black;
 padding: 16px 32px;
-font: 42pt &quot;Ubuntu Thin&quot;;</string>
+font: 32pt &quot;Ubuntu Thin&quot;;</string>
        </property>
        <property name="modelColumn">
         <number>0</number>
@@ -210,7 +210,7 @@ background-color: #3ab7c9;
 border-radius: 8px;
 color: black;
 padding: 16px 32px;
-font: 42pt &quot;Ubuntu Thin&quot;;</string>
+font: 32pt &quot;Ubuntu Thin&quot;;</string>
        </property>
       </widget>
       <widget class="QComboBox" name="m_ComboBox_Price">
@@ -228,7 +228,7 @@ background-color: #fa7373;
 border-radius: 8px;
 color: black;
 padding: 16px 32px;
-font: 42pt &quot;Ubuntu Thin&quot;;
+font: 32pt &quot;Ubuntu Thin&quot;;
 </string>
        </property>
       </widget>
@@ -316,7 +316,7 @@ cursor: pointer;</string>
        <property name="font">
         <font>
          <family>Ubuntu Thin</family>
-         <pointsize>42</pointsize>
+         <pointsize>32</pointsize>
          <italic>false</italic>
          <bold>false</bold>
          <underline>false</underline>
@@ -332,7 +332,7 @@ cursor: pointer;</string>
 background-color: #fafa73;
 border-radius: 8px;
 color: black;
-font: 42pt &quot;Ubuntu Thin&quot;;</string>
+font: 32pt &quot;Ubuntu Thin&quot;;</string>
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhNone</set>
@@ -356,7 +356,7 @@ font: 42pt &quot;Ubuntu Thin&quot;;</string>
        <property name="font">
         <font>
          <family>Ubuntu Thin</family>
-         <pointsize>42</pointsize>
+         <pointsize>32</pointsize>
          <italic>false</italic>
          <bold>false</bold>
          <underline>false</underline>
@@ -369,7 +369,7 @@ font: 42pt &quot;Ubuntu Thin&quot;;</string>
 background-color: #3ab7c9;
 border-radius: 8px;
 color: black;
-font: 42pt &quot;Ubuntu Thin&quot;;</string>
+font: 32pt &quot;Ubuntu Thin&quot;;</string>
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhLatinOnly</set>
@@ -396,7 +396,7 @@ font: 42pt &quot;Ubuntu Thin&quot;;</string>
        <property name="font">
         <font>
          <family>Ubuntu Thin</family>
-         <pointsize>42</pointsize>
+         <pointsize>32</pointsize>
          <italic>false</italic>
          <bold>false</bold>
          <underline>false</underline>
@@ -412,7 +412,7 @@ font: 42pt &quot;Ubuntu Thin&quot;;</string>
 background-color: #fa7373;
 border-radius: 8px;
 color: black;
-font: 42pt &quot;Ubuntu Thin&quot;;</string>
+font: 32pt &quot;Ubuntu Thin&quot;;</string>
        </property>
        <property name="inputMethodHints">
         <set>Qt::ImhFormattedNumbersOnly</set>
@@ -614,9 +614,9 @@ cursor: pointer;</string>
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>85</y>
+         <y>104</y>
          <width>335</width>
-         <height>250</height>
+         <height>371</height>
         </rect>
        </property>
        <property name="autoFillBackground">
@@ -625,12 +625,102 @@ cursor: pointer;</string>
        <property name="styleSheet">
         <string notr="true"/>
        </property>
+       <property name="frameShape">
+        <enum>QFrame::WinPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <property name="horizontalScrollBarPolicy">
+        <enum>Qt::ScrollBarAlwaysOff</enum>
+       </property>
+       <property name="sizeAdjustPolicy">
+        <enum>QAbstractScrollArea::AdjustToContentsOnFirstShow</enum>
+       </property>
+       <property name="autoScroll">
+        <bool>true</bool>
+       </property>
+       <property name="autoScrollMargin">
+        <number>10</number>
+       </property>
+       <property name="editTriggers">
+        <set>QAbstractItemView::NoEditTriggers</set>
+       </property>
+       <property name="tabKeyNavigation">
+        <bool>true</bool>
+       </property>
+       <property name="showDropIndicator" stdset="0">
+        <bool>true</bool>
+       </property>
+       <property name="dragDropOverwriteMode">
+        <bool>false</bool>
+       </property>
+       <property name="alternatingRowColors">
+        <bool>true</bool>
+       </property>
+       <property name="selectionMode">
+        <enum>QAbstractItemView::SingleSelection</enum>
+       </property>
+       <property name="selectionBehavior">
+        <enum>QAbstractItemView::SelectRows</enum>
+       </property>
+       <property name="textElideMode">
+        <enum>Qt::ElideLeft</enum>
+       </property>
+       <property name="showGrid">
+        <bool>true</bool>
+       </property>
+       <property name="sortingEnabled">
+        <bool>true</bool>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+       <property name="cornerButtonEnabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="horizontalHeaderVisible">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderMinimumSectionSize">
+        <number>20</number>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>40</number>
+       </attribute>
+       <attribute name="horizontalHeaderHighlightSections">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderVisible">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderCascadingSectionResizes">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderDefaultSectionSize">
+        <number>40</number>
+       </attribute>
+       <attribute name="verticalHeaderHighlightSections">
+        <bool>false</bool>
+       </attribute>
+       <attribute name="verticalHeaderStretchLastSection">
+        <bool>false</bool>
+       </attribute>
       </widget>
       <widget class="QPushButton" name="m_pushButton_Filtrar">
        <property name="geometry">
         <rect>
          <x>100</x>
-         <y>350</y>
+         <y>500</y>
          <width>160</width>
          <height>60</height>
         </rect>
@@ -760,6 +850,9 @@ cursor: pointer;</string>
             <month>1</month>
             <day>1</day>
            </date>
+          </property>
+          <property name="displayFormat">
+           <string>dd-MM-yyyy</string>
           </property>
          </widget>
         </item>

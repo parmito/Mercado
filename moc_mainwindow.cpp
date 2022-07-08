@@ -48,7 +48,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     const uint offsetsAndSize[28];
-    char stringdata0[350];
+    char stringdata0[337];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
@@ -63,11 +63,11 @@ QT_MOC_LITERAL(120, 30), // "on_m_pushButton_Drawer_clicked"
 QT_MOC_LITERAL(151, 25), // "SideMenuAnimationFinished"
 QT_MOC_LITERAL(177, 37), // "on_m_pushButton_GraficoPrecos..."
 QT_MOC_LITERAL(215, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(237, 29), // "on_m_PushButton_QDate_clicked"
-QT_MOC_LITERAL(267, 25), // "on_CalendarWidget_Changed"
-QT_MOC_LITERAL(293, 4), // "date"
-QT_MOC_LITERAL(298, 21), // "on_m_DateEdit_onClick"
-QT_MOC_LITERAL(320, 29) // "on_m_DateEdit_userDateChanged"
+QT_MOC_LITERAL(237, 16), // "on_QDate_clicked"
+QT_MOC_LITERAL(254, 25), // "on_CalendarWidget_Changed"
+QT_MOC_LITERAL(280, 4), // "date"
+QT_MOC_LITERAL(285, 21), // "on_m_DateEdit_onClick"
+QT_MOC_LITERAL(307, 29) // "on_m_DateEdit_userDateChanged"
 
     },
     "MainWindow\0on_m_toolButton_Adicionar_clicked\0"
@@ -76,8 +76,7 @@ QT_MOC_LITERAL(320, 29) // "on_m_DateEdit_userDateChanged"
     "on_m_pushButton_Drawer_clicked\0"
     "SideMenuAnimationFinished\0"
     "on_m_pushButton_GraficoPrecos_clicked\0"
-    "on_pushButton_clicked\0"
-    "on_m_PushButton_QDate_clicked\0"
+    "on_pushButton_clicked\0on_QDate_clicked\0"
     "on_CalendarWidget_Changed\0date\0"
     "on_m_DateEdit_onClick\0"
     "on_m_DateEdit_userDateChanged"
@@ -138,7 +137,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->on_m_pushButton_Drawer_clicked(); break;
         case 4: _t->SideMenuAnimationFinished(); break;
         case 5: _t->on_m_pushButton_GraficoPrecos_clicked(); break;
-        case 7: _t->on_m_PushButton_QDate_clicked(); break;
+        case 7: _t->on_QDate_clicked(); break;
         case 8: _t->on_CalendarWidget_Changed((*reinterpret_cast< std::add_pointer_t<QDate>>(_a[1]))); break;
         default: ;
         }

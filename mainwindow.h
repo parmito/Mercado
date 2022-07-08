@@ -20,8 +20,6 @@
 #include <QLineSeries>
 #include "CustomQSqlTableModel.h"
 #include "dbmanager.h"
-#include "itemtabledb.h"
-
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -49,17 +47,14 @@ private slots:
     void on_m_pushButton_Drawer_clicked();
 
     void SideMenuAnimationFinished();
-    /*void SideMenuAnimationStarted();*/
 
     void on_m_pushButton_GraficoPrecos_clicked();
 
     void on_pushButton_clicked();
 
-    void on_m_PushButton_QDate_clicked();
+    void on_QDate_clicked();
 
-    //void on_CalendarWidget_Changed();
     void on_CalendarWidget_Changed(const QDate& date);
-
 
     void on_m_DateEdit_onClick();
 
