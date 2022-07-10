@@ -24,7 +24,9 @@ MainWindow::MainWindow(QWidget *parent)
     QString path = QStandardPaths::writableLocation( QStandardPaths::StandardLocation::DownloadLocation);
     qDebug() <<"Path:"<< path;
 
+    /* Database constructor*/
     db = new DBManager(path);
+    qDebug() << "Database constructor";
 
     /*QFile dfile("assets:/db/dbSqlite.db");
     if (dfile.exists())
@@ -35,31 +37,6 @@ MainWindow::MainWindow(QWidget *parent)
     db = new DBManager("./");*/
 
 
-    QList<QString> strListResult;
-    strListResult = RemoveDuplicatesItemList<QString>();
-
-
-    for(int i = 0; i < strListResult.size();i++)
-    {        
-        ui->m_ComboBox_Item->addItem(strListResult.at(i));
-        ui->m_ComboBoxItem_HL->addItem(strListResult.at(i));
-    }
-
-    strListResult.empty();
-    strListResult = RemoveDuplicatesLocalList<QString>();
-    for(int i = 0; i < strListResult.size();i++)
-    {
-        ui->m_ComboBox_Local->addItem(strListResult.at(i));
-        ui->m_ComboBoxLocal_HL->addItem(strListResult.at(i));
-    }
-
-    strListResult.empty();
-    strListResult = RemoveDuplicatesPriceList<QString>();
-    for(int i = 0; i < strListResult.size();i++)
-    {
-        ui->m_ComboBox_Price->addItem(strListResult.at(i));
-        ui->m_ComboBoxPrice_HL->addItem(strListResult.at(i));
-    }
 
     QDateTime now = QDateTime::currentDateTime();
     QString datetime_format = "dd-MM-yyyy";
@@ -136,6 +113,42 @@ MainWindow::MainWindow(QWidget *parent)
     m_CalendarWidget = new QCalendarWidget();
 
     QObject::connect(ui->m_DateEdit,SIGNAL(clicked()),this, SLOT(on_QDate_clicked()));
+
+    /*QStringList strList((const QString)("*"));
+    ui->m_ComboBoxItem_HL->insertItems(0,strList);
+    ui->m_ComboBoxLocal_HL->insertItems(0,strList);
+    ui->m_ComboBoxPrice_HL->insertItems(0,strList);*/
+
+    QList<QString> strListResultItem,strListResultPrice,strListResultLocal;
+    strListResultItem = RemoveDuplicatesItemList<QString>();
+    strListResultLocal = RemoveDuplicatesLocalList<QString>();
+    strListResultPrice = RemoveDuplicatesPriceList<QString>();
+
+/*    ui->m_ComboBoxItem_HL->setEnabled(false);
+    ui->m_ComboBoxPrice_HL->setEnabled(false);
+    ui->m_ComboBoxLocal_HL->setEnabled(false);*/
+    for(int i = 0; i < strListResultItem.size();i++)
+    {
+        ui->m_ComboBox_Item->addItem(strListResultItem.at(i));
+        ui->m_ComboBoxItem_HL->addItem(strListResultItem.at(i));
+    }
+
+    for(int i = 0; i < strListResultLocal.size();i++)
+    {
+        ui->m_ComboBox_Local->addItem(strListResultLocal.at(i));
+        ui->m_ComboBoxLocal_HL->addItem(strListResultLocal.at(i));
+    }
+
+    for(int i = 0; i < strListResultPrice.size();i++)
+    {
+        ui->m_ComboBox_Price->addItem(strListResultPrice.at(i));
+        ui->m_ComboBoxPrice_HL->addItem(strListResultPrice.at(i));
+    }
+
+
+    /*ui->m_ComboBoxItem_HL->setEnabled(true);
+    ui->m_ComboBoxPrice_HL->setEnabled(true);
+    ui->m_ComboBoxLocal_HL->setEnabled(true);*/
 }
 
 
@@ -324,6 +337,7 @@ template<typename TItem> QList<TItem>MainWindow::RemoveDuplicatesLocalList(void)
  * */
 void MainWindow::setupModel(const QString &tableName, const QStringList &headers)
 {
+    qDebug() << "SetupModel";
     /* Initializes the data model representation with the installation name
      * in the database table, on which will be accessed in the table
      * */
@@ -341,6 +355,7 @@ void MainWindow::setupModel(const QString &tableName, const QStringList &headers
 
 void MainWindow::createUI()
 {
+    qDebug() << "createUI";
     ui->m_tableView_Today->setModel(model);     // We set the model on the TableView
     ui->m_tableView_Today->setColumnHidden(0, true);    // Hide the column id Records
     // Allow the selection of lines
@@ -355,7 +370,7 @@ void MainWindow::createUI()
     ui->m_tableView_Today->setAlternatingRowColors(true);
     ui->m_tableView_Today->horizontalHeader()->setStyleSheet("QHeaderView{"
                                          "background-color: rgb(250, 115, 115);"
-                                         "font-size: 14px;"
+                                         "font-size: 16px;"
                                          "font-weight: bold;"
                                          "}");
 
@@ -430,6 +445,7 @@ void MainWindow::on_m_toolButton_Adicionar_clicked()
 
     strListResult = RemoveDuplicatesItemList<QString>();
     ui->m_ComboBox_Item->clear();
+
     for(int i = 0; i < strListResult.size();i++)
     {
         ui->m_ComboBox_Item->addItem(strListResult.at(i));
@@ -447,7 +463,7 @@ void MainWindow::on_m_toolButton_Adicionar_clicked()
 
     strListResult.clear();
     strListResult = RemoveDuplicatesPriceList<QString>();
-    ui->m_ComboBox_Price->clear();
+    ui->m_ComboBox_Price->clear();    
     for(int i = 0; i < strListResult.size();i++)
     {
         ui->m_ComboBox_Price->addItem(strListResult.at(i));
@@ -508,10 +524,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_m_pushButton_Filtrar_clicked()
+void MainWindow::on_Filtrar_clicked()
 {
     std::map<QString,QString> qstrMapSqlFilter;
     QString strSqliteFilterClause;
+
+    qDebug()<< "on_Filtrar_clicked()";
 
     qstrMapSqlFilter.clear();
 
@@ -526,15 +544,18 @@ void MainWindow::on_m_pushButton_Filtrar_clicked()
         qDebug()<< '[' << key << "] = " << value << "; ";
     }
     strSqliteFilterClause.append("date=\'"+qstrMapSqlFilter["date"]+"\'");
-    //strSqliteFilterClause.append(" AND " "item=\'"+qstrMapSqlFilter["item"]+"\'");
-    //strSqliteFilterClause.append(" AND " "local=\'"+qstrMapSqlFilter["local"]+"\'");
-
-    float flMin = ui->m_ComboBoxPrice_HL->currentText().toFloat();
-    flMin = (flMin*100)/100;
-    QString qstrFloatMin =QString::number(flMin);
-
-    //strSqliteFilterClause.append(" AND price=" + qstrFloatMin);
-
+    if(ui->m_ComboBoxItem_HL->currentText() != "*" && ui->m_ComboBoxItem_HL->currentText() != "")
+    {
+        strSqliteFilterClause.append(" AND " "item=\'"+qstrMapSqlFilter["item"]+"\'");
+    }
+    if(ui->m_ComboBoxLocal_HL->currentText() != "*" && ui->m_ComboBoxLocal_HL->currentText() != "")
+    {
+        strSqliteFilterClause.append(" AND " "local=\'"+qstrMapSqlFilter["local"]+"\'");
+    }
+    if(ui->m_ComboBoxPrice_HL->currentText() != "*" && ui->m_ComboBoxPrice_HL->currentText() != "")
+    {
+        strSqliteFilterClause.append(" AND price=\'" + ui->m_ComboBoxPrice_HL->currentText()+"\'");
+    }
     qDebug() << strSqliteFilterClause;
 
     model->setFilter(strSqliteFilterClause);   
@@ -554,7 +575,6 @@ void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
     Dblack->setFixedSize(300,280);
     QLabel *label = new QLabel("Copy Right @ UESTC-CCSE wytk2008.net");
     QAbstractButton *bExit = new QPushButton("back");
-
 
     QLineSeries *series = new QLineSeries();
     series->append(0, 6);
@@ -588,7 +608,7 @@ void MainWindow::on_QDate_clicked()
 
 
     m_CalendarWidget->setDateTextFormat (QDate(2020,1,1),QTextCharFormat());
-    QAbstractButton *m_ExitButton = new QPushButton("Exit");
+    QAbstractButton *m_ExitButton = new QPushButton("Sair");
 
     m_VBoxLayout->addWidget(m_CalendarWidget);
     m_VBoxLayout->addWidget(m_ExitButton);
@@ -602,15 +622,29 @@ void MainWindow::on_QDate_clicked()
 
 void MainWindow::on_CalendarWidget_Changed(const QDate& date)
 {
+    qDebug()<< "on_CalendarWidget_Changed";
     ui->m_DateEdit->setDate(date);
+    this->on_Filtrar_clicked();
+}
+
+void MainWindow::on_m_ComboBoxItem_HL_currentTextChanged(const QString &arg1)
+{
+    qDebug()<< "on_m_ComboBoxItem_HL_currentTextChanged";
+    this->on_Filtrar_clicked();
 }
 
 
+void MainWindow::on_m_ComboBoxPrice_HL_currentTextChanged(const QString &arg1)
+{
+    qDebug()<< "on_m_ComboBoxPrice_HL_currentTextChanged";
+    this->on_Filtrar_clicked();
+}
 
 
+void MainWindow::on_m_ComboBoxLocal_HL_currentTextChanged(const QString &arg1)
+{
+    qDebug()<< "on_m_ComboBoxLocal_HL_currentTextChanged";
+    this->on_Filtrar_clicked();
 
-
-
-
-
+}
 

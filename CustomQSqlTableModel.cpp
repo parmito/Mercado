@@ -16,7 +16,7 @@ QVariant CustomQSqlTableModel::headerData(int section, Qt::Orientation orientati
         case 1:
             return QString("Produtos");
         case 2:
-            return QString("Preços");
+            return QString("Preços R$");
         case 3:
             return QString("Data        ");
         case 4:

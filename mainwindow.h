@@ -42,7 +42,7 @@ private slots:
 
     void on_m_toolButton_AdicionarEscolher_clicked();
 
-    void on_m_pushButton_Filtrar_clicked();
+    void on_Filtrar_clicked();
 
     void on_m_pushButton_Drawer_clicked();
 
@@ -59,6 +59,12 @@ private slots:
     void on_m_DateEdit_onClick();
 
     void on_m_DateEdit_userDateChanged(const QDate &date);
+
+    void on_m_ComboBoxItem_HL_currentTextChanged(const QString &arg1);
+
+    void on_m_ComboBoxPrice_HL_currentTextChanged(const QString &arg1);
+
+    void on_m_ComboBoxLocal_HL_currentTextChanged(const QString &arg1);
 
 private:
     Ui::MainWindow *ui;
@@ -83,6 +89,6 @@ private:
     QPointF *m_StartPointDrawer, *m_EndPointDrawer, *m_CurrPointDrawer;
     int iHoverEventCnt;
     tenSideMenuStatus m_SideMenuStatus;
-    QCalendarWidget *m_CalendarWidget;
+    QCalendarWidget *m_CalendarWidget;    
 };
 #endif // MAINWINDOW_H

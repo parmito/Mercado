@@ -61,7 +61,6 @@ public:
     QWidget *m_Tab_Hoje;
     QFrame *m_Frame_Hoje;
     QTableView *m_tableView_Today;
-    QPushButton *m_pushButton_Filtrar;
     QWidget *formLayoutWidget;
     QFormLayout *formLayout;
     QWidget *layoutWidget;
@@ -174,8 +173,8 @@ public:
 "background-color: #fafa73;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"padding: 16px 32px;\n"
-"font: 32pt \"Ubuntu Thin\";"));
+"padding: 4px 4px;\n"
+"font: 24pt \"Ubuntu Thin\";"));
         m_ComboBox_Local->setModelColumn(0);
         m_ComboBox_Item = new QComboBox(groupBox_2);
         m_ComboBox_Item->setObjectName(QString::fromUtf8("m_ComboBox_Item"));
@@ -184,8 +183,8 @@ public:
 "background-color: #3ab7c9;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"padding: 16px 32px;\n"
-"font: 32pt \"Ubuntu Thin\";"));
+"padding: 4px 4px;\n"
+"font: 24pt \"Ubuntu Thin\";"));
         m_ComboBox_Price = new QComboBox(groupBox_2);
         m_ComboBox_Price->setObjectName(QString::fromUtf8("m_ComboBox_Price"));
         m_ComboBox_Price->setGeometry(QRect(20, 255, 310, 80));
@@ -193,8 +192,8 @@ public:
 "background-color: #fa7373;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"padding: 16px 32px;\n"
-"font: 32pt \"Ubuntu Thin\";\n"
+"padding: 4px 4px;\n"
+"font: 24pt \"Ubuntu Thin\";\n"
 ""));
         m_label_DiaMesAno_Escolher = new QLabel(groupBox_2);
         m_label_DiaMesAno_Escolher->setObjectName(QString::fromUtf8("m_label_DiaMesAno_Escolher"));
@@ -232,7 +231,7 @@ public:
         m_textEdit_Local->setBaseSize(QSize(0, 0));
         QFont font3;
         font3.setFamilies({QString::fromUtf8("Ubuntu Thin")});
-        font3.setPointSize(32);
+        font3.setPointSize(24);
         font3.setBold(false);
         font3.setItalic(false);
         font3.setUnderline(false);
@@ -244,7 +243,7 @@ public:
 "background-color: #fafa73;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"font: 32pt \"Ubuntu Thin\";"));
+"font: 24pt \"Ubuntu Thin\";"));
         m_textEdit_Local->setInputMethodHints(Qt::ImhNone);
         m_textEdit_Local->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_textEdit_Local->setTabChangesFocus(true);
@@ -256,7 +255,7 @@ public:
 "background-color: #3ab7c9;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"font: 32pt \"Ubuntu Thin\";"));
+"font: 24pt \"Ubuntu Thin\";"));
         m_textEdit_Item->setInputMethodHints(Qt::ImhLatinOnly);
         m_textEdit_Item->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_textEdit_Item->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
@@ -270,7 +269,7 @@ public:
 "background-color: #fa7373;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
-"font: 32pt \"Ubuntu Thin\";"));
+"font: 24pt \"Ubuntu Thin\";"));
         m_textEdit_Preco->setInputMethodHints(Qt::ImhFormattedNumbersOnly);
         m_textEdit_Preco->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         m_textEdit_Preco->setSizeAdjustPolicy(QAbstractScrollArea::AdjustIgnored);
@@ -357,7 +356,7 @@ public:
 "cursor: pointer;"));
         m_tableView_Today = new QTableView(m_Frame_Hoje);
         m_tableView_Today->setObjectName(QString::fromUtf8("m_tableView_Today"));
-        m_tableView_Today->setGeometry(QRect(10, 104, 335, 371));
+        m_tableView_Today->setGeometry(QRect(10, 104, 335, 471));
         m_tableView_Today->setAutoFillBackground(true);
         m_tableView_Today->setStyleSheet(QString::fromUtf8(""));
         m_tableView_Today->setFrameShape(QFrame::WinPanel);
@@ -390,18 +389,6 @@ public:
         m_tableView_Today->verticalHeader()->setDefaultSectionSize(40);
         m_tableView_Today->verticalHeader()->setHighlightSections(false);
         m_tableView_Today->verticalHeader()->setStretchLastSection(false);
-        m_pushButton_Filtrar = new QPushButton(m_Frame_Hoje);
-        m_pushButton_Filtrar->setObjectName(QString::fromUtf8("m_pushButton_Filtrar"));
-        m_pushButton_Filtrar->setGeometry(QRect(100, 500, 160, 60));
-        m_pushButton_Filtrar->setStyleSheet(QString::fromUtf8("width: 40%;\n"
-"background-color: #555555;\n"
-"border-radius: 8px;\n"
-"color: white;\n"
-"font: 18pt \"Ubuntu Condensed\";\n"
-"padding: 16px 32px;\n"
-"text-decoration: none;\n"
-"margin: 4px 2px;\n"
-"cursor: pointer;"));
         formLayoutWidget = new QWidget(m_Frame_Hoje);
         formLayoutWidget->setObjectName(QString::fromUtf8("formLayoutWidget"));
         formLayoutWidget->setGeometry(QRect(5, 1485, 215, 70));
@@ -616,7 +603,6 @@ public:
         label_4->setText(QCoreApplication::translate("MainWindow", "R$", nullptr));
         m_label_DiaMesAno->setText(QCoreApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", nullptr));
         m_tabWidget_Main->setTabText(m_tabWidget_Main->indexOf(m_Tab_Editar), QCoreApplication::translate("MainWindow", "Editar", nullptr));
-        m_pushButton_Filtrar->setText(QCoreApplication::translate("MainWindow", "Filtrar", nullptr));
         m_DateEdit->setDisplayFormat(QCoreApplication::translate("MainWindow", "dd-MM-yyyy", nullptr));
         m_LabelItem_HL->setText(QCoreApplication::translate("MainWindow", "Item", nullptr));
         m_LabelPrice_HL->setText(QCoreApplication::translate("MainWindow", "Pre\303\247os", nullptr));
