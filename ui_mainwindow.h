@@ -581,7 +581,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        m_tabWidget_Main->setCurrentIndex(2);
+        m_tabWidget_Main->setCurrentIndex(0);
         m_pushButton_Drawer->setDefault(true);
 
 

@@ -570,11 +570,32 @@ void MainWindow::on_m_pushButton_Drawer_clicked()
 
 void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
 {
-    QDialog *Dblack = new QDialog();
+    QList<QString> strListResult;
+    QDialog *Dialog = new QDialog();
+    Dialog->setFixedSize(320,300);
+    QLabel *label = new QLabel("Selecione o Item");
     QVBoxLayout *vlayout = new QVBoxLayout;
-    Dblack->setFixedSize(300,280);
-    QLabel *label = new QLabel("Copy Right @ UESTC-CCSE wytk2008.net");
-    QAbstractButton *bExit = new QPushButton("back");
+    QAbstractButton *bExit = new QPushButton("Voltar");
+
+    m_ComboBox_Graph = new QComboBox();
+
+    m_ComboBox_Graph->setStyleSheet("  width: 40%;\
+                                background-color: #3ab7c9;\
+                                border-radius: 8px;\
+                                color: black;\
+                                padding: 4px 4px;\
+                                font: 24pt \"Ubuntu Thin\"");
+
+    strListResult = RemoveDuplicatesItemList<QString>();
+    m_ComboBox_Graph->clear();
+    for(int i = 0; i < strListResult.size();i++)
+    {
+        m_ComboBox_Graph->addItem(strListResult.at(i));
+    }
+
+
+    QObject::connect(m_ComboBox_Graph,SIGNAL(currentTextChanged(const QString)),this,SLOT(on_m_ComboBox_Graph_TextChanged(const QString)));
+
 
     QLineSeries *series = new QLineSeries();
     series->append(0, 6);
@@ -590,19 +611,38 @@ void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
     QChartView *chartView = new QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
 
-
-    vlayout->addWidget(chartView);
     vlayout->addWidget(label);
+    vlayout->addWidget(m_ComboBox_Graph);
+    vlayout->addWidget(chartView);    
     vlayout->addWidget(bExit);
-    Dblack->setLayout(vlayout);
-    Dblack->show();
-    Dblack->connect(bExit,SIGNAL(clicked()),Dblack,SLOT(close()));
+    Dialog->setLayout(vlayout);
+    Dialog->show();
+    Dialog->connect(bExit,SIGNAL(clicked()),Dialog,SLOT(close()));
+}
+
+
+void MainWindow::on_m_ComboBox_Graph_TextChanged(const QString &arg1)
+{
+    QString strSqliteFilterClause;
+    QList<QString> strListResult;
+
+    qDebug() << "on_m_ComboBox_Graph_TextChanged";
+
+
+    strSqliteFilterClause.append("date=\'*\'");
+    if(m_ComboBox_Graph->currentText() != "*" && m_ComboBox_Graph->currentText() != "")
+    {
+        strSqliteFilterClause.append(" AND item=\'"+m_ComboBox_Graph->currentText()+"\'");
+    }
+
+    model->setFilter(strSqliteFilterClause);
+    model->select();
 }
 
 void MainWindow::on_QDate_clicked()
 {
     QDialog *m_Dialog = new QDialog();
-    m_Dialog->setFixedSize(300,300);
+    m_Dialog->setFixedSize(320,300);
 
     QVBoxLayout *m_VBoxLayout = new QVBoxLayout;
 

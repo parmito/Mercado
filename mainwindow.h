@@ -66,6 +66,8 @@ private slots:
 
     void on_m_ComboBoxLocal_HL_currentTextChanged(const QString &arg1);
 
+    void on_m_ComboBox_Graph_TextChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     /* Also present are two methods that form
@@ -89,6 +91,7 @@ private:
     QPointF *m_StartPointDrawer, *m_EndPointDrawer, *m_CurrPointDrawer;
     int iHoverEventCnt;
     tenSideMenuStatus m_SideMenuStatus;
-    QCalendarWidget *m_CalendarWidget;    
+    QCalendarWidget *m_CalendarWidget;
+    QComboBox *m_ComboBox_Graph;
 };
 #endif // MAINWINDOW_H
