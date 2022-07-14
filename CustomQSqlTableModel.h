@@ -1,6 +1,7 @@
 #ifndef CUSTOMQSQLTABLEMODEL_H
 #define CUSTOMQSQLTABLEMODEL_H
 
+#include <QDateTime>
 #include <QSqlTableModel>
 
 class CustomQSqlTableModel : public QSqlTableModel

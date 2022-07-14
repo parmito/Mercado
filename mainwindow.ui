@@ -43,7 +43,7 @@
      </font>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>2</number>
     </property>
     <widget class="QWidget" name="m_Tab_Escolher">
      <property name="font">
@@ -207,6 +207,8 @@ font: 24pt &quot;Ubuntu Thin&quot;;</string>
        <property name="styleSheet">
         <string notr="true">width: 40%;
 background-color: #3ab7c9;
+selection-background-color: #fafa73;
+combobox-popup: 0;
 border-radius: 8px;
 color: black;
 padding: 4px 4px;
@@ -225,6 +227,8 @@ font: 24pt &quot;Ubuntu Thin&quot;;</string>
        <property name="styleSheet">
         <string notr="true">width: 40%;
 background-color: #fa7373;
+selection-background-color: #fafa73;
+combobox-popup: 0;
 border-radius: 8px;
 color: black;
 padding: 4px 4px;
@@ -749,6 +753,8 @@ cursor: pointer;</string>
            <string notr="true">width:40%;
 height:40%;
 background-color: #3ab7c9;
+selection-background-color: #fafa73;
+combobox-popup: 0;
 border-radius: 4px;
 color: black;
 font: 12pt &quot;Ubuntu Thin&quot;;
@@ -770,6 +776,8 @@ cursor: pointer;</string>
            <string notr="true">width:40%;
 height:40%;
 background-color: #fa7373;
+selection-background-color: #fafa73;
+combobox-popup: 0;
 border-radius: 4px;
 color: black;
 font: 12pt &quot;Ubuntu Thin&quot;;
@@ -844,6 +852,8 @@ cursor: pointer;</string>
            <string notr="true">width: 40%;
 height:40%;
 background-color: #fafa73;
+selection-background-color: #fa7373;
+combobox-popup: 0;
 border-radius: 4px;
 color: black;
 font: 12pt &quot;Ubuntu Thin&quot;;

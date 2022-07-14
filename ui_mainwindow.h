@@ -181,6 +181,8 @@ public:
         m_ComboBox_Item->setGeometry(QRect(20, 145, 310, 80));
         m_ComboBox_Item->setStyleSheet(QString::fromUtf8("width: 40%;\n"
 "background-color: #3ab7c9;\n"
+"selection-background-color: #fafa73;\n"
+"combobox-popup: 0;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
 "padding: 4px 4px;\n"
@@ -190,6 +192,8 @@ public:
         m_ComboBox_Price->setGeometry(QRect(20, 255, 310, 80));
         m_ComboBox_Price->setStyleSheet(QString::fromUtf8("width: 40%;\n"
 "background-color: #fa7373;\n"
+"selection-background-color: #fafa73;\n"
+"combobox-popup: 0;\n"
 "border-radius: 8px;\n"
 "color: black;\n"
 "padding: 4px 4px;\n"
@@ -407,6 +411,8 @@ public:
         m_ComboBoxItem_HL->setStyleSheet(QString::fromUtf8("width:40%;\n"
 "height:40%;\n"
 "background-color: #3ab7c9;\n"
+"selection-background-color: #fafa73;\n"
+"combobox-popup: 0;\n"
 "border-radius: 4px;\n"
 "color: black;\n"
 "font: 12pt \"Ubuntu Thin\";\n"
@@ -422,6 +428,8 @@ public:
         m_ComboBoxPrice_HL->setStyleSheet(QString::fromUtf8("width:40%;\n"
 "height:40%;\n"
 "background-color: #fa7373;\n"
+"selection-background-color: #fafa73;\n"
+"combobox-popup: 0;\n"
 "border-radius: 4px;\n"
 "color: black;\n"
 "font: 12pt \"Ubuntu Thin\";\n"
@@ -461,6 +469,8 @@ public:
         m_ComboBoxLocal_HL->setStyleSheet(QString::fromUtf8("width: 40%;\n"
 "height:40%;\n"
 "background-color: #fafa73;\n"
+"selection-background-color: #fa7373;\n"
+"combobox-popup: 0;\n"
 "border-radius: 4px;\n"
 "color: black;\n"
 "font: 12pt \"Ubuntu Thin\";\n"
@@ -581,7 +591,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        m_tabWidget_Main->setCurrentIndex(0);
+        m_tabWidget_Main->setCurrentIndex(2);
         m_pushButton_Drawer->setDefault(true);
 
 

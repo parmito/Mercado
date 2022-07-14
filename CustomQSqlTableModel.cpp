@@ -43,6 +43,17 @@ QVariant CustomQSqlTableModel::data(const QModelIndex &index, int role=Qt::Foreg
             {
                 value = value.toString();
             }
+            if((role == Qt::DisplayRole) && (index.column()== 3))
+            {
+                QString qString = value.toString();
+                qString.replace("-",".");
+                qString.append(" 00:00:00");
+
+                QDateTime qDateTime = QDateTime::fromString(qString,"dd.MM.yyyy 00:00:00");
+                qint64 i64value = qDateTime.toMSecsSinceEpoch();
+                value = i64value;
+            }
+
             break;
     }
     return value;

@@ -18,6 +18,7 @@
 #include <QtCharts>
 #include <QChartView>
 #include <QLineSeries>
+#include "CustomDateTimeDelegate.h"
 #include "CustomQSqlTableModel.h"
 #include "dbmanager.h"
 
@@ -74,6 +75,8 @@ private:
      * the model and appearance TableView
      * */
     CustomQSqlTableModel  *model;
+    QTableView *m_DialogTableView;
+    CustomDateTimeDelegate *m_DateTimeDelegate;
     void setupModel(const QString &tableName, const QStringList &headers);
     void createUI(void);
     void InserirDadosDB(void);
@@ -93,5 +96,12 @@ private:
     tenSideMenuStatus m_SideMenuStatus;
     QCalendarWidget *m_CalendarWidget;
     QComboBox *m_ComboBox_Graph;
+    QChart *m_DialogQChart;
+    QLineSeries *m_DialogSeries;
+    QVXYModelMapper *m_DialogMapper;
+    QChartView *m_DialogChartView;
+    QDateTimeAxis *m_axisX;
+    QValueAxis *m_axisY;
+
 };
 #endif // MAINWINDOW_H
