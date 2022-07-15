@@ -97,7 +97,7 @@ private:
     QCalendarWidget *m_CalendarWidget;
     QComboBox *m_ComboBox_Graph;
     QChart *m_DialogQChart;
-    QLineSeries *m_DialogSeries;
+    QSplineSeries *m_DialogSeries;
     QVXYModelMapper *m_DialogMapper;
     QChartView *m_DialogChartView;
     QDateTimeAxis *m_axisX;

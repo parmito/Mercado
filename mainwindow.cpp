@@ -185,11 +185,79 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     m_DialogQChart = new QChart();
-    m_DialogSeries = new QLineSeries();
+    m_DialogSeries = new QSplineSeries();
     m_DialogMapper = new QVXYModelMapper(this);
     m_DialogChartView = new QChartView(m_DialogQChart);
     m_axisX = new QDateTimeAxis();
     m_axisY = new QValueAxis();
+
+#if 0
+    // for storing color hex from the series
+    QString seriesColorHex = "#000000";
+
+    // get the color of the series and use it for showing the mapped area
+    seriesColorHex = "#" + QString::number(series->pen().color().rgb(), 16).right(6).toUpper();
+    model->addMapping(seriesColorHex, QRect(0, 0, 2, model->rowCount()));
+#endif
+    /*QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);*/
+
+    /*QChart *m_DialogQChart = new QChart();
+    QLineSeries *m_DialogSeries = new QLineSeries();
+    QVXYModelMapper *m_DialogMapper = new QVXYModelMapper(this);
+    QChartView *m_DialogChartView = new QChartView(m_DialogQChart);
+    QDateTimeAxis *m_axisX = new QDateTimeAxis();
+    QValueAxis *m_axisY = new QValueAxis();*/
+
+
+    m_DialogQChart->legend()->hide();
+    m_DialogQChart->setTitleFont(QFont("Times", 10, QFont::Bold));
+    m_DialogQChart->setTitle("Preço dos Itens");
+
+        // Customize chart background
+        /*QLinearGradient backgroundGradient;
+    backgroundGradient.setStart(QPointF(0, 0));
+    backgroundGradient.setFinalStop(QPointF(0, 1));
+    backgroundGradient.setColorAt(0.0, QRgb(0xd2d0d1));
+    backgroundGradient.setColorAt(1.0, QRgb(0x4c4547));
+    backgroundGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+    m_DialogQChart->setBackgroundBrush(backgroundGradient);*/
+
+        // Customize plot area background
+        /*QLinearGradient plotAreaGradient;
+    plotAreaGradient.setStart(QPointF(0, 1));
+    plotAreaGradient.setFinalStop(QPointF(1, 0));
+    plotAreaGradient.setColorAt(0.0, QRgb(0x555555));
+    plotAreaGradient.setColorAt(1.0, QRgb(0x55aa55));
+    plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
+    m_DialogQChart->setPlotAreaBackgroundBrush(plotAreaGradient);
+    m_DialogQChart->setPlotAreaBackgroundVisible(true);*/
+
+    m_DialogMapper->setXColumn(3);
+    m_DialogMapper->setYColumn(2);
+    m_DialogMapper->setSeries(m_DialogSeries);
+    m_DialogMapper->setModel(model);
+
+    m_DialogQChart->setAnimationOptions(QChart::AllAnimations);
+
+    m_axisX->setFormat("dd.MM.yyyy");
+    m_axisX->setRange(QDateTime(QDate(2022,7,1),QTime(0,0,0,0),Qt::LocalTime,0),\
+                      QDateTime(QDate(2022,7,20),QTime(0,0,0,0),Qt::LocalTime,0));
+    m_axisX->setLabelsAngle(-90);
+    m_axisX->setLabelsFont(QFont("Times", 10, QFont::Bold));
+    m_axisX->setTickCount(4);
+
+    m_axisY->setRange(0, 100);
+    m_axisY->setTickCount(5);
+    m_axisY->setLabelsFont(QFont("Times", 10, QFont::Bold));
+    m_axisY->setLabelFormat("%0.2f");
+
+    m_DialogChartView->setRenderHint(QPainter::Antialiasing);
+    m_DialogChartView->setFixedSize(320, 300);
+    m_DialogChartView->chart()->addSeries(m_DialogSeries);
+    m_DialogChartView->chart()->setAxisX(m_axisX, m_DialogSeries);
+    m_DialogChartView->chart()->setAxisY(m_axisY, m_DialogSeries);
+    m_DialogChartView->setFont(QFont("Times", 10, QFont::Bold));
 
 }
 
@@ -630,73 +698,7 @@ void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
 
 
 
-#if 0
-    // for storing color hex from the series
-    QString seriesColorHex = "#000000";
 
-    // get the color of the series and use it for showing the mapped area
-    seriesColorHex = "#" + QString::number(series->pen().color().rgb(), 16).right(6).toUpper();
-    model->addMapping(seriesColorHex, QRect(0, 0, 2, model->rowCount()));
-#endif
-    /*QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);*/
-
-    /*QChart *m_DialogQChart = new QChart();
-    QLineSeries *m_DialogSeries = new QLineSeries();
-    QVXYModelMapper *m_DialogMapper = new QVXYModelMapper(this);
-    QChartView *m_DialogChartView = new QChartView(m_DialogQChart);
-    QDateTimeAxis *m_axisX = new QDateTimeAxis();
-    QValueAxis *m_axisY = new QValueAxis();*/
-
-
-    this->m_DialogQChart->legend()->hide();
-    this->m_DialogQChart->setTitleFont(QFont("Times", 10, QFont::Bold));
-    this->m_DialogQChart->setTitle("Preço dos Itens");
-
-    // Customize chart background
-    /*QLinearGradient backgroundGradient;
-    backgroundGradient.setStart(QPointF(0, 0));
-    backgroundGradient.setFinalStop(QPointF(0, 1));
-    backgroundGradient.setColorAt(0.0, QRgb(0xd2d0d1));
-    backgroundGradient.setColorAt(1.0, QRgb(0x4c4547));
-    backgroundGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
-    m_DialogQChart->setBackgroundBrush(backgroundGradient);*/
-
-    // Customize plot area background
-    /*QLinearGradient plotAreaGradient;
-    plotAreaGradient.setStart(QPointF(0, 1));
-    plotAreaGradient.setFinalStop(QPointF(1, 0));
-    plotAreaGradient.setColorAt(0.0, QRgb(0x555555));
-    plotAreaGradient.setColorAt(1.0, QRgb(0x55aa55));
-    plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
-    m_DialogQChart->setPlotAreaBackgroundBrush(plotAreaGradient);
-    m_DialogQChart->setPlotAreaBackgroundVisible(true);*/
-
-    m_DialogMapper->setXColumn(3);
-    m_DialogMapper->setYColumn(2);
-    m_DialogMapper->setSeries(m_DialogSeries);
-    m_DialogMapper->setModel(model);
-
-    m_DialogQChart->setAnimationOptions(QChart::AllAnimations);
-
-    m_axisX->setFormat("dd.MM.yyyy");
-    m_axisX->setRange(QDateTime(QDate(2022,7,1),QTime(0,0,0,0),Qt::LocalTime,0),\
-                      QDateTime(QDate(2022,7,20),QTime(0,0,0,0),Qt::LocalTime,0));
-    m_axisX->setLabelsAngle(-90);
-    m_axisX->setLabelsFont(QFont("Times", 10, QFont::Bold));
-    m_axisX->setTickCount(4);
-
-    m_axisY->setRange(0, 100);
-    m_axisY->setTickCount(5);
-    m_axisY->setLabelsFont(QFont("Times", 10, QFont::Bold));
-    m_axisY->setLabelFormat("%0.2f");
-
-    m_DialogChartView->setRenderHint(QPainter::Antialiasing);
-    m_DialogChartView->setFixedSize(320, 300);
-    m_DialogChartView->chart()->addSeries(m_DialogSeries);
-    m_DialogChartView->chart()->setAxisX(m_axisX, m_DialogSeries);
-    m_DialogChartView->chart()->setAxisY(m_axisY, m_DialogSeries);
-    m_DialogChartView->setFont(QFont("Times", 10, QFont::Bold));
 
     vlayout->addWidget(label);
     vlayout->addWidget(m_ComboBox_Graph);
@@ -727,30 +729,42 @@ void MainWindow::on_m_ComboBox_Graph_TextChanged(const QString &arg1)
     QString qStr;
     QDateTime qDateTime;
     qint64 i64;
-    std::vector<qint64> i64Vector;
-    std::vector<qint64>::iterator it = i64Vector.begin();
+    std::vector<qint64> i64VectorDate;
+    std::vector<qint64>::iterator itDate = i64VectorDate.begin();
+
+    std::vector<qint64> i64VectorValue;
+    std::vector<qint64>::iterator itValue = i64VectorValue.begin();
+
     for(int i = 0; i < iRowCount; i++)
     {
         qStr = model->record(i).value(3).toString();
         qStr.replace("-",".");
-
         qDateTime = QDateTime::fromString(qStr,"dd.MM.yyyy");
         i64 = qDateTime.toMSecsSinceEpoch();
-        it = i64Vector.insert ( it , i64 );
+        itDate = i64VectorDate.insert ( itDate , i64 );
+
+        qStr = model->record(i).value(2).toString();
+        i64 = qStr.toFloat();
+        itValue = i64VectorValue.insert ( itValue , i64 );
     }    
-    sort(i64Vector.begin(), i64Vector.end());
+    sort(i64VectorDate.begin(), i64VectorDate.end());
+    itDate=i64VectorDate.begin();
+    QDateTime qBeginDateTime = QDateTime::fromMSecsSinceEpoch(*itDate);
+    itDate=i64VectorDate.end();
+    itDate--;
+    QDateTime qEndDateTime = QDateTime::fromMSecsSinceEpoch(*itDate);
+    m_axisX->setRange(qBeginDateTime,qEndDateTime);
+    m_axisX->setTickCount(iRowCount*2);
 
-    it=i64Vector.begin();
-    QDateTime qBeginDateTime = QDateTime::fromMSecsSinceEpoch(*it);
-    it=i64Vector.end();
-    QDateTime qEndDateTime = QDateTime::fromMSecsSinceEpoch(*it);
+    sort(i64VectorValue.begin(), i64VectorValue.end());
+    itValue=i64VectorValue.begin();
+    qreal qMin = *itValue-1;
 
-
-    /*qDebug() << "myvector contains:";
-    for (it=i64Vector.begin(); it<i64Vector.end(); it++)
-    {
-        qDebug() << *it;
-    }*/
+    itValue=i64VectorValue.end();
+    itValue--;
+    qreal qMax = *itValue+1;
+    m_axisY->setRange(qMin,qMax);
+    m_axisY->setTickCount(iRowCount*4);
 }
 
 void MainWindow::on_QDate_clicked()
