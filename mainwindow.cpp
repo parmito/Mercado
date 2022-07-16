@@ -46,10 +46,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->m_label_DiaMesAno_Escolher->setText(strDateTime);
 
     setupModel(TABLE,
-                QStringList()   << ("id  ")
-                                << ("Produtos        ")
+                QStringList()   << ("id")
+                                << ("Produtos")
                                 << ("Preços")
-                                << ("Dia                 ")
+                                << ("Dia")
                                 << ("Local"));
 
     m_DateTimeDelegate = new CustomDateTimeDelegate();
@@ -81,7 +81,7 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(container);*/
 
     m_AnimationSideMenu = new QPropertyAnimation(ui->m_SideMenu_Frame, "size");
-    m_AnimationSideMenu->setEasingCurve(QEasingCurve::InOutCubic);
+    m_AnimationSideMenu->setEasingCurve(QEasingCurve::Linear);
     m_AnimationSideMenu->setDuration(500);
     /*QObject::connect(m_AnimationSideMenu,SIGNAL(stateChanged(int,int)),this,SLOT(SideMenuAnimationStarted()));*/
     QObject::connect(m_AnimationSideMenu,SIGNAL(finished()),this,SLOT(SideMenuAnimationFinished()));
@@ -144,7 +144,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     m_DialogTableView = new QTableView();
-    m_DialogTableView->setModel(model);
+    m_DialogTableView->setModel(m_proxyModel);
+    /*m_DialogTableView->setSortingEnabled(true);*/
     m_DialogTableView->setItemDelegateForColumn(3,m_DateTimeDelegate);
 
 
@@ -159,9 +160,10 @@ MainWindow::MainWindow(QWidget *parent)
     m_DialogTableView->horizontalHeader()->setStretchLastSection(true);
 
     m_DialogTableView->setAlternatingRowColors(true);
+    m_DialogTableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
     m_DialogTableView->horizontalHeader()->setStyleSheet("QHeaderView{"
                                                          "background-color: rgb(250, 115, 115);"
-                                                         "font-size: 14px;"
+                                                         "font-size: 12px;"
                                                          "font-weight: bold;"
                                                          "}");
 
@@ -178,72 +180,56 @@ MainWindow::MainWindow(QWidget *parent)
                                         combobox-popup: 0;\
                                         border-radius: 8px;\
                                         color: black;\
-                                        padding: 4px 4px;\
                                         font: 14pt \"Ubuntu Thin\"");
 
     m_ComboBox_Graph->setMaxVisibleItems(5);
 
 
     m_DialogQChart = new QChart();
-    m_DialogSeries = new QSplineSeries();
+    m_DialogSeries = new QLineSeries();
     m_DialogMapper = new QVXYModelMapper(this);
     m_DialogChartView = new QChartView(m_DialogQChart);
     m_axisX = new QDateTimeAxis();
     m_axisY = new QValueAxis();
 
-#if 0
-    // for storing color hex from the series
-    QString seriesColorHex = "#000000";
-
-    // get the color of the series and use it for showing the mapped area
-    seriesColorHex = "#" + QString::number(series->pen().color().rgb(), 16).right(6).toUpper();
-    model->addMapping(seriesColorHex, QRect(0, 0, 2, model->rowCount()));
-#endif
-    /*QChartView *chartView = new QChartView(chart);
-    chartView->setRenderHint(QPainter::Antialiasing);*/
-
-    /*QChart *m_DialogQChart = new QChart();
-    QLineSeries *m_DialogSeries = new QLineSeries();
-    QVXYModelMapper *m_DialogMapper = new QVXYModelMapper(this);
-    QChartView *m_DialogChartView = new QChartView(m_DialogQChart);
-    QDateTimeAxis *m_axisX = new QDateTimeAxis();
-    QValueAxis *m_axisY = new QValueAxis();*/
-
-
     m_DialogQChart->legend()->hide();
     m_DialogQChart->setTitleFont(QFont("Times", 10, QFont::Bold));
     m_DialogQChart->setTitle("Preço dos Itens");
 
-        // Customize chart background
-        /*QLinearGradient backgroundGradient;
+
+    /*m_DialogSeries->setMarkerSize(10.);
+    m_DialogSeries->setLightMarker(QImage(20,20,QImage::Format_RGBX32FPx4));*/
+
+    // Customize chart background
+    QLinearGradient backgroundGradient;
     backgroundGradient.setStart(QPointF(0, 0));
     backgroundGradient.setFinalStop(QPointF(0, 1));
-    backgroundGradient.setColorAt(0.0, QRgb(0xd2d0d1));
-    backgroundGradient.setColorAt(1.0, QRgb(0x4c4547));
+    backgroundGradient.setColorAt(0.0, QRgb(0xeeeee4));
+    backgroundGradient.setColorAt(1.0, QRgb(0xfafa73));
     backgroundGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
-    m_DialogQChart->setBackgroundBrush(backgroundGradient);*/
+    m_DialogQChart->setBackgroundBrush(backgroundGradient);
 
-        // Customize plot area background
-        /*QLinearGradient plotAreaGradient;
+    // Customize plot area background
+    QLinearGradient plotAreaGradient;
     plotAreaGradient.setStart(QPointF(0, 1));
     plotAreaGradient.setFinalStop(QPointF(1, 0));
-    plotAreaGradient.setColorAt(0.0, QRgb(0x555555));
-    plotAreaGradient.setColorAt(1.0, QRgb(0x55aa55));
+    plotAreaGradient.setColorAt(0.0, QRgb(0xeeeee4));
+    plotAreaGradient.setColorAt(1.0, QRgb(0xfafa73));
     plotAreaGradient.setCoordinateMode(QGradient::ObjectBoundingMode);
     m_DialogQChart->setPlotAreaBackgroundBrush(plotAreaGradient);
-    m_DialogQChart->setPlotAreaBackgroundVisible(true);*/
+    m_DialogQChart->setPlotAreaBackgroundVisible(true);
 
     m_DialogMapper->setXColumn(3);
     m_DialogMapper->setYColumn(2);
     m_DialogMapper->setSeries(m_DialogSeries);
-    m_DialogMapper->setModel(model);
+    m_DialogMapper->setModel(m_proxyModel);
 
     m_DialogQChart->setAnimationOptions(QChart::AllAnimations);
 
     m_axisX->setFormat("dd.MM.yyyy");
     m_axisX->setRange(QDateTime(QDate(2022,7,1),QTime(0,0,0,0),Qt::LocalTime,0),\
                       QDateTime(QDate(2022,7,20),QTime(0,0,0,0),Qt::LocalTime,0));
-    m_axisX->setLabelsAngle(-90);
+    m_axisX->setLabelsAngle(-45);
     m_axisX->setLabelsFont(QFont("Times", 10, QFont::Bold));
     m_axisX->setTickCount(4);
 
@@ -258,6 +244,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_DialogChartView->chart()->setAxisX(m_axisX, m_DialogSeries);
     m_DialogChartView->chart()->setAxisY(m_axisY, m_DialogSeries);
     m_DialogChartView->setFont(QFont("Times", 10, QFont::Bold));
+
 
 }
 
@@ -453,6 +440,8 @@ void MainWindow::setupModel(const QString &tableName, const QStringList &headers
      * */
     model = new CustomQSqlTableModel(this);
     model->setTable(tableName);
+    m_proxyModel = new QSortFilterProxyModel(this);
+    m_proxyModel->setSourceModel(model);
 
     /* Set the columns names in a table with sorted data
      * */
@@ -460,14 +449,16 @@ void MainWindow::setupModel(const QString &tableName, const QStringList &headers
         model->setHeaderData(i,Qt::Horizontal,headers[j]);
     }
     // Set Sort Ascending steering column data
-    model->setSort(0,Qt::AscendingOrder);
+    /*model->setSort(3,Qt::AscendingOrder);*/
+    m_proxyModel->sort(3, Qt::AscendingOrder);
 }
 
 void MainWindow::createUI()
 {
     qDebug() << "createUI";
-    ui->m_tableView_Today->setModel(model);     // We set the model on the TableView
-    ui->m_tableView_Today->setItemDelegateForColumn(3,m_DateTimeDelegate);
+    ui->m_tableView_Today->setModel(m_proxyModel);     // We set the model on the TableView
+    /*ui->m_tableView_Today->setSortingEnabled(true);*/
+    ui->m_tableView_Today->setItemDelegateForColumn(3,m_DateTimeDelegate);    
     ui->m_tableView_Today->setColumnHidden(0, true);    // Hide the column id Records   
     // Allow the selection of lines
     ui->m_tableView_Today->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -581,6 +572,7 @@ void MainWindow::on_m_toolButton_Adicionar_clicked()
         ui->m_ComboBoxPrice_HL->addItem(strListResult.at(i));
     }
 
+    model->setSort(3,Qt::AscendingOrder);
     model->select(); /* Fetches the data from the table*/
 }
 
@@ -626,6 +618,7 @@ void MainWindow::on_m_toolButton_AdicionarEscolher_clicked()
         ui->m_ComboBoxPrice_HL->addItem(strListResult.at(i));
     }
 
+    model->setSort(3,Qt::AscendingOrder);
     model->select(); // Fetches the data from the table
 }
 
@@ -669,7 +662,8 @@ void MainWindow::on_Filtrar_clicked()
     }
     qDebug() << strSqliteFilterClause;
 
-    model->setFilter(strSqliteFilterClause);   
+    model->setFilter(strSqliteFilterClause);
+    model->setSort(3,Qt::AscendingOrder);
     model->select(); /* Fetches the data from the table*/
 }
 
@@ -682,10 +676,12 @@ void MainWindow::on_m_pushButton_Drawer_clicked()
 void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
 {    
     QDialog *Dialog = new QDialog();
-    Dialog->setFixedSize(320,640);
+    Dialog->setFixedSize(340,640);
     QLabel *label = new QLabel("Selecione o Item");
     QVBoxLayout *vlayout = new QVBoxLayout;
     QAbstractButton *bExit = new QPushButton("Voltar");
+
+    label->setStyleSheet("font-size: 10px;");
 
     QList<QString> strListResult;
     strListResult = RemoveDuplicatesItemList<QString>();
@@ -695,10 +691,6 @@ void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
         m_ComboBox_Graph->addItem(strListResult.at(i));
     }
     QObject::connect(m_ComboBox_Graph,SIGNAL(currentTextChanged(const QString)),this,SLOT(on_m_ComboBox_Graph_TextChanged(const QString)));
-
-
-
-
 
     vlayout->addWidget(label);
     vlayout->addWidget(m_ComboBox_Graph);
@@ -753,8 +745,6 @@ void MainWindow::on_m_ComboBox_Graph_TextChanged(const QString &arg1)
     itDate=i64VectorDate.end();
     itDate--;
     QDateTime qEndDateTime = QDateTime::fromMSecsSinceEpoch(*itDate);
-    m_axisX->setRange(qBeginDateTime,qEndDateTime);
-    m_axisX->setTickCount(iRowCount*2);
 
     sort(i64VectorValue.begin(), i64VectorValue.end());
     itValue=i64VectorValue.begin();
@@ -763,8 +753,17 @@ void MainWindow::on_m_ComboBox_Graph_TextChanged(const QString &arg1)
     itValue=i64VectorValue.end();
     itValue--;
     qreal qMax = *itValue+1;
+
+    if(iRowCount == 1)
+    {
+        qEndDateTime = qEndDateTime.addDays(1);
+    }
+
+    m_axisX->setRange(qBeginDateTime,qEndDateTime);
+    m_axisX->setTickCount(iRowCount*2);
+
     m_axisY->setRange(qMin,qMax);
-    m_axisY->setTickCount(iRowCount*4);
+    m_axisY->setTickCount(iRowCount*2);
 }
 
 void MainWindow::on_QDate_clicked()

@@ -75,6 +75,7 @@ private:
      * the model and appearance TableView
      * */
     CustomQSqlTableModel  *model;
+    QSortFilterProxyModel *m_proxyModel;
     QTableView *m_DialogTableView;
     CustomDateTimeDelegate *m_DateTimeDelegate;
     void setupModel(const QString &tableName, const QStringList &headers);
@@ -97,8 +98,10 @@ private:
     QCalendarWidget *m_CalendarWidget;
     QComboBox *m_ComboBox_Graph;
     QChart *m_DialogQChart;
-    QSplineSeries *m_DialogSeries;
+    QLineSeries *m_DialogSeries;
+    QBarSeries *m_DialogBarSeries;
     QVXYModelMapper *m_DialogMapper;
+    QVBarModelMapper *m_DialogBarMapper;
     QChartView *m_DialogChartView;
     QDateTimeAxis *m_axisX;
     QValueAxis *m_axisY;

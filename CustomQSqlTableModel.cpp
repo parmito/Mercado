@@ -18,7 +18,7 @@ QVariant CustomQSqlTableModel::headerData(int section, Qt::Orientation orientati
         case 2:
             return QString("Preços R$");
         case 3:
-            return QString("Data        ");
+            return QString("Data    ");
         case 4:
             return QString("Local");
         }
