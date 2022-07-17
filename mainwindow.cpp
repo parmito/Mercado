@@ -144,7 +144,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     m_DialogTableView = new QTableView();
-    m_DialogTableView->setModel(m_proxyModel);
+    m_DialogTableView->setModel(model);
     /*m_DialogTableView->setSortingEnabled(true);*/
     m_DialogTableView->setItemDelegateForColumn(3,m_DateTimeDelegate);
 
@@ -180,7 +180,7 @@ MainWindow::MainWindow(QWidget *parent)
                                         combobox-popup: 0;\
                                         border-radius: 8px;\
                                         color: black;\
-                                        font: 14pt \"Ubuntu Thin\"");
+                                        font: 16pt \"Ubuntu Thin\"");
 
     m_ComboBox_Graph->setMaxVisibleItems(5);
 
@@ -193,7 +193,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_axisY = new QValueAxis();
 
     m_DialogQChart->legend()->hide();
-    m_DialogQChart->setTitleFont(QFont("Times", 10, QFont::Bold));
+    m_DialogQChart->setTitleFont(QFont("Times", 12, QFont::Bold));
     m_DialogQChart->setTitle("Preço dos Itens");
 
 
@@ -229,7 +229,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_axisX->setFormat("dd.MM.yyyy");
     m_axisX->setRange(QDateTime(QDate(2022,7,1),QTime(0,0,0,0),Qt::LocalTime,0),\
                       QDateTime(QDate(2022,7,20),QTime(0,0,0,0),Qt::LocalTime,0));
-    m_axisX->setLabelsAngle(-45);
+    m_axisX->setLabelsAngle(-90);
     m_axisX->setLabelsFont(QFont("Times", 10, QFont::Bold));
     m_axisX->setTickCount(4);
 
@@ -449,14 +449,13 @@ void MainWindow::setupModel(const QString &tableName, const QStringList &headers
         model->setHeaderData(i,Qt::Horizontal,headers[j]);
     }
     // Set Sort Ascending steering column data
-    /*model->setSort(3,Qt::AscendingOrder);*/
     m_proxyModel->sort(3, Qt::AscendingOrder);
 }
 
 void MainWindow::createUI()
 {
     qDebug() << "createUI";
-    ui->m_tableView_Today->setModel(m_proxyModel);     // We set the model on the TableView
+    ui->m_tableView_Today->setModel(model);     // We set the model on the TableView
     /*ui->m_tableView_Today->setSortingEnabled(true);*/
     ui->m_tableView_Today->setItemDelegateForColumn(3,m_DateTimeDelegate);    
     ui->m_tableView_Today->setColumnHidden(0, true);    // Hide the column id Records   
@@ -470,16 +469,17 @@ void MainWindow::createUI()
     ui->m_tableView_Today->horizontalHeader()->setStretchLastSection(true);
 
     ui->m_tableView_Today->setAlternatingRowColors(true);
+    /*ui->m_tableView_Today->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);*/
     ui->m_tableView_Today->horizontalHeader()->setStyleSheet("QHeaderView{"
                                          "background-color: rgb(250, 115, 115);"
-                                         "font-size: 16px;"
+                                         "font-size: 14px;"
                                          "font-weight: bold;"
                                          "}");
 
     ui->m_tableView_Today->setStyleSheet("QTableView{"
                                          "background-color: rgb(250, 250, 115);"
                                          "alternate-background-color: rgb(250, 115, 115);"
-                                         "font-size: 12px;"
+                                         "font-size: 10px;"
                                          "}");
 
     /* Filtering SQLite data */
@@ -681,7 +681,7 @@ void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
     QVBoxLayout *vlayout = new QVBoxLayout;
     QAbstractButton *bExit = new QPushButton("Voltar");
 
-    label->setStyleSheet("font-size: 10px;");
+    label->setStyleSheet("font-size: 16px;");
 
     QList<QString> strListResult;
     strListResult = RemoveDuplicatesItemList<QString>();
