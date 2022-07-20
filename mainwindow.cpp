@@ -143,12 +143,10 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
+
     m_DialogTableView = new QTableView();
     m_DialogTableView->setModel(model);
-    /*m_DialogTableView->setSortingEnabled(true);*/
     m_DialogTableView->setItemDelegateForColumn(3,m_DateTimeDelegate);
-
-
     m_DialogTableView->setColumnHidden(0, true);    // Hide the column id Records
     // Allow the selection of lines
     m_DialogTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -157,7 +155,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Set the size of the columns by content
     m_DialogTableView->resizeColumnsToContents();
     m_DialogTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    m_DialogTableView->horizontalHeader()->setStretchLastSection(true);
+    /*m_DialogTableView->horizontalHeader()->setStretchLastSection(true);*/
 
     m_DialogTableView->setAlternatingRowColors(true);
     m_DialogTableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
@@ -172,6 +170,15 @@ MainWindow::MainWindow(QWidget *parent)
                                      "alternate-background-color: rgb(250, 115, 115);"
                                      "font-size: 10px;"
                                      "}");
+
+   m_DialogTableView->setFrameStyle(QFrame::StyledPanel);
+   m_DialogTableView->setAutoFillBackground(true);
+
+
+    m_labelSelectItem = new QLabel("Selecione o Item");
+    m_vlayoutSelectItem = new QVBoxLayout();
+    m_bExit = new QPushButton("Voltar");
+
 
     m_ComboBox_Graph = new QComboBox();
     m_ComboBox_Graph->setStyleSheet("  width: 40%;\
@@ -245,7 +252,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_DialogChartView->chart()->setAxisY(m_axisY, m_DialogSeries);
     m_DialogChartView->setFont(QFont("Times", 10, QFont::Bold));
 
-
+    m_QtyOfItemsComboBox = 0;
 }
 
 
@@ -677,29 +684,31 @@ void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
 {    
     QDialog *Dialog = new QDialog();
     Dialog->setFixedSize(340,640);
-    QLabel *label = new QLabel("Selecione o Item");
-    QVBoxLayout *vlayout = new QVBoxLayout;
-    QAbstractButton *bExit = new QPushButton("Voltar");
 
-    label->setStyleSheet("font-size: 16px;");
+    m_labelSelectItem->setStyleSheet("font-size: 16px;");
 
     QList<QString> strListResult;
     strListResult = RemoveDuplicatesItemList<QString>();
-    m_ComboBox_Graph->clear();
-    for(int i = 0; i < strListResult.size();i++)
-    {
-        m_ComboBox_Graph->addItem(strListResult.at(i));
-    }
-    QObject::connect(m_ComboBox_Graph,SIGNAL(currentTextChanged(const QString)),this,SLOT(on_m_ComboBox_Graph_TextChanged(const QString)));
 
-    vlayout->addWidget(label);
-    vlayout->addWidget(m_ComboBox_Graph);
-    vlayout->addWidget(m_DialogTableView);
-    vlayout->addWidget(m_DialogChartView);
-    vlayout->addWidget(bExit);
-    Dialog->setLayout(vlayout);
+    if(m_QtyOfItemsComboBox != strListResult.size())
+    {
+        m_ComboBox_Graph->clear();
+        for(int i = 0; i < strListResult.size();i++)
+        {
+            m_ComboBox_Graph->addItem(strListResult.at(i));
+        }
+        m_QtyOfItemsComboBox = strListResult.size();
+    }
+
+    m_vlayoutSelectItem->addWidget(m_labelSelectItem);
+    m_vlayoutSelectItem->addWidget(m_ComboBox_Graph);
+    m_vlayoutSelectItem->addWidget(m_DialogTableView);
+    m_vlayoutSelectItem->addWidget(m_DialogChartView);
+    m_vlayoutSelectItem->addWidget(m_bExit);
+    Dialog->setLayout(m_vlayoutSelectItem);
     Dialog->show();
-    Dialog->connect(bExit,SIGNAL(clicked()),Dialog,SLOT(close()));
+    Dialog->connect(m_bExit,SIGNAL(clicked()),Dialog,SLOT(close()));
+    QObject::connect(m_ComboBox_Graph,SIGNAL(currentTextChanged(const QString)),this,SLOT(on_m_ComboBox_Graph_TextChanged(const QString)));
 }
 
 
@@ -707,8 +716,6 @@ void MainWindow::on_m_ComboBox_Graph_TextChanged(const QString &arg1)
 {
     QString strSqliteFilterClause;
     QList<QString> strListResult;
-
-    qDebug() << "on_m_ComboBox_Graph_TextChanged";
 
     if(m_ComboBox_Graph->currentText() != "*" && m_ComboBox_Graph->currentText() != "")
     {

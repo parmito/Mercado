@@ -105,6 +105,11 @@ private:
     QChartView *m_DialogChartView;
     QDateTimeAxis *m_axisX;
     QValueAxis *m_axisY;
+    QLabel *m_labelSelectItem;
+    QVBoxLayout *m_vlayoutSelectItem;
+    QAbstractButton *m_bExit;
+    qsizetype m_QtyOfItemsComboBox;
+
 
 };
 #endif // MAINWINDOW_H
