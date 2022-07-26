@@ -58,3 +58,9 @@ QVariant CustomQSqlTableModel::data(const QModelIndex &index, int role=Qt::Foreg
     }
     return value;
 }
+
+bool CustomQSqlTableModel::selectRow(int row)
+{
+    qDebug() << "Row:" << row;
+    return true;
+}

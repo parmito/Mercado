@@ -69,6 +69,12 @@ private slots:
 
     void on_m_ComboBox_Graph_TextChanged(const QString &arg1);
 
+    void on_m_tableView_Today_clicked(const QModelIndex &index);
+
+    void on_m_tableView_Today_pressed(const QModelIndex &index);
+
+    void on_m_tableView_Today_entered(const QModelIndex &index);
+
 private:
     Ui::MainWindow *ui;
     /* Also present are two methods that form
@@ -91,7 +97,7 @@ private:
     void SideMenuAnimation(tenSideMenuStatus status);
     bool event(QEvent *event) override;
     bool gestureEvent(QHoverEvent *event);
-    void swipeTriggered(QSwipeGesture* gesture);
+    /*void swipeTriggered(QSwipeGesture* gesture);*/
     QPointF *m_StartPointDrawer, *m_EndPointDrawer, *m_CurrPointDrawer;
     int iHoverEventCnt;
     tenSideMenuStatus m_SideMenuStatus;
@@ -105,6 +111,11 @@ private:
     QChartView *m_DialogChartView;
     QDateTimeAxis *m_axisX;
     QValueAxis *m_axisY;
+    QLabel *m_labelSelectItem;
+    QVBoxLayout *m_vlayoutSelectItem;
+    QAbstractButton *m_bExit;
+    qsizetype m_QtyOfItemsComboBox;
+
 
 };
 #endif // MAINWINDOW_H

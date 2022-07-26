@@ -10,7 +10,10 @@ class CustomQSqlTableModel : public QSqlTableModel
 public:
     explicit CustomQSqlTableModel(QObject *parent = nullptr);
     QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const override;
-    QVariant data(const QModelIndex &index, int role) const;  
+    QVariant data(const QModelIndex &index, int role) const;
+
+public slots:
+    bool selectRow(int row) override;
 };
 
 #endif // CUSTOMQSQLTABLEMODEL_H

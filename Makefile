@@ -55,21 +55,27 @@ OBJECTS_DIR   = ./
 SOURCES       = CustomDateTimeDelegate.cpp \
 		CustomQSqlTableModel.cpp \
 		QCustomDateEdit.cpp \
+		QCustomSideFrame.cpp \
+		QCustomTableView.cpp \
 		dbmanager.cpp \
 		main.cpp \
 		mainwindow.cpp qrc_qt.cpp \
 		qrc_qmake_qmake_qm_files.cpp \
 		moc_QCustomDateEdit.cpp \
+		moc_QCustomSideFrame.cpp \
 		moc_mainwindow.cpp
 OBJECTS       = CustomDateTimeDelegate.o \
 		CustomQSqlTableModel.o \
 		QCustomDateEdit.o \
+		QCustomSideFrame.o \
+		QCustomTableView.o \
 		dbmanager.o \
 		main.o \
 		mainwindow.o \
 		qrc_qt.o \
 		qrc_qmake_qmake_qm_files.o \
 		moc_QCustomDateEdit.o \
+		moc_QCustomSideFrame.o \
 		moc_mainwindow.o
 DIST          = android/AndroidManifest.xml \
 		android/build.gradle \
@@ -331,10 +337,14 @@ DIST          = android/AndroidManifest.xml \
 		Mercado.pro CustomDateTimeDelegate.h \
 		CustomQSqlTableModel.h \
 		QCustomDateEdit.h \
+		QCustomSideFrame.h \
+		QCustomTableView.h \
 		dbmanager.h \
 		mainwindow.h CustomDateTimeDelegate.cpp \
 		CustomQSqlTableModel.cpp \
 		QCustomDateEdit.cpp \
+		QCustomSideFrame.cpp \
+		QCustomTableView.cpp \
 		dbmanager.cpp \
 		main.cpp \
 		mainwindow.cpp
@@ -893,8 +903,8 @@ distdir: FORCE
 	$(COPY_FILE) --parents Mercado_pt_BR.ts $(DISTDIR)/
 	$(COPY_FILE) --parents qt.qrc qmake_qmake_qm_files.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../Qt6.3/6.3.1/android_arm64_v8a/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents CustomDateTimeDelegate.h CustomQSqlTableModel.h QCustomDateEdit.h dbmanager.h mainwindow.h $(DISTDIR)/
-	$(COPY_FILE) --parents CustomDateTimeDelegate.cpp CustomQSqlTableModel.cpp QCustomDateEdit.cpp dbmanager.cpp main.cpp mainwindow.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents CustomDateTimeDelegate.h CustomQSqlTableModel.h QCustomDateEdit.h QCustomSideFrame.h QCustomTableView.h dbmanager.h mainwindow.h $(DISTDIR)/
+	$(COPY_FILE) --parents CustomDateTimeDelegate.cpp CustomQSqlTableModel.cpp QCustomDateEdit.cpp QCustomSideFrame.cpp QCustomTableView.cpp dbmanager.cpp main.cpp mainwindow.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents mainwindow.ui $(DISTDIR)/
 	$(COPY_FILE) --parents Mercado_pt_BR.ts $(DISTDIR)/
 
@@ -959,9 +969,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: ../../Qt6.3/6.3.1/android_arm64_v8a/mkspecs/features/data/dummy.cpp
 	/home/danilo/Android/Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ -target aarch64-linux-android23 -fno-limit-debug-info -fPIC -fstack-protector-strong -DANDROID -g -std=gnu++1z -Wall -W -dM -E -o moc_predefs.h ../../Qt6.3/6.3.1/android_arm64_v8a/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_QCustomDateEdit.cpp moc_mainwindow.cpp
+compiler_moc_header_make_all: moc_QCustomDateEdit.cpp moc_QCustomSideFrame.cpp moc_mainwindow.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_QCustomDateEdit.cpp moc_mainwindow.cpp
+	-$(DEL_FILE) moc_QCustomDateEdit.cpp moc_QCustomSideFrame.cpp moc_mainwindow.cpp
 moc_QCustomDateEdit.cpp: QCustomDateEdit.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QDateEdit \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qdatetimeedit.h \
@@ -1107,6 +1117,156 @@ moc_QCustomDateEdit.cpp: QCustomDateEdit.h \
 		moc_predefs.h \
 		../../Qt6.3/6.3.1/gcc_64/libexec/moc
 	/disk/Qt6.3/6.3.1/gcc_64/libexec/moc $(DEFINES) --include /disk/Qt-Workspace/Mercado/moc_predefs.h -I/disk/Qt6.3/6.3.1/android_arm64_v8a/mkspecs/android-clang -I/disk/Qt-Workspace/Mercado -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtCharts -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtOpenGLWidgets -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtQuick -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtOpenGL -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtGui -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtSql -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtQmlModels -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtQml -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtQmlIntegration -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtNetwork -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/local/include -I/home/danilo/Android/Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include -I/usr/include/x86_64-linux-gnu -I/usr/include QCustomDateEdit.h -o moc_QCustomDateEdit.cpp
+
+moc_QCustomSideFrame.cpp: QCustomSideFrame.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QPropertyAnimation \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpropertyanimation.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvariantanimation.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qabstractanimation.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnamespace.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcore-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcoreexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsystemdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qprocessordetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompilerdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtypeinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerfwd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsysinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlogging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qflags.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbasicatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_bootstrap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qgenericatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_cxx11.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobalstatic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnumeric.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qversiontagging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtmetamacros.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstring.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qchar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrefcount.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpair.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydatapointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydataops.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainertools_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringliteral.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qanystringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qutf8stringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringtokenizer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringbuilder.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhashfunctions.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterator.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearraylist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringmatcher.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcoreevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetatype.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvarlengtharray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopeguard.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatastream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevicebase.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterable.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetacontainer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtaggedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmath.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbindingstorage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qeasingcurve.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvariant.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhash.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdebug.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtextstream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringconverter.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qset.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontiguouscache.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QFrame \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qframe.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtgui-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgets-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qwidget.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs_win.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmargins.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qaction.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qkeysequence.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qicon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsize.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpaintdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrect.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcolor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgb.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgba64.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qimage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixelformat.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtransform.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpolygon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qregion.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qline.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpalette.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbrush.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfont.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontmetrics.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qsizepolicy.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcursor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbitmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qurl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qeventpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvector2d.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvectornd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpointingdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qinputdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qscreen.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QList \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QObject \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QRect \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSize \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSizeF \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QTransform \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnativeinterface.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QWidget \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QGestureEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qgesture.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatetime.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcalendar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlocale.h \
+		moc_predefs.h \
+		../../Qt6.3/6.3.1/gcc_64/libexec/moc
+	/disk/Qt6.3/6.3.1/gcc_64/libexec/moc $(DEFINES) --include /disk/Qt-Workspace/Mercado/moc_predefs.h -I/disk/Qt6.3/6.3.1/android_arm64_v8a/mkspecs/android-clang -I/disk/Qt-Workspace/Mercado -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtCharts -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtOpenGLWidgets -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtQuick -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtOpenGL -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtGui -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtSql -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtQmlModels -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtQml -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtQmlIntegration -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtNetwork -I/disk/Qt6.3/6.3.1/android_arm64_v8a/include/QtCore -I/usr/include/c++/11 -I/usr/include/x86_64-linux-gnu/c++/11 -I/usr/include/c++/11/backward -I/usr/local/include -I/home/danilo/Android/Sdk/ndk/20.0.5594570/toolchains/llvm/prebuilt/linux-x86_64/lib64/clang/8.0.7/include -I/usr/include/x86_64-linux-gnu -I/usr/include QCustomSideFrame.h -o moc_QCustomSideFrame.cpp
 
 moc_mainwindow.cpp: mainwindow.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QMainWindow \
@@ -1792,6 +1952,8 @@ compiler_uic_clean:
 ui_mainwindow.h: mainwindow.ui \
 		../../Qt6.3/6.3.1/gcc_64/libexec/uic \
 		QCustomDateEdit.h \
+		QCustomTableView.h \
+		QCustomSideFrame.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QDateEdit \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qdatetimeedit.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsglobal.h \
@@ -1932,7 +2094,308 @@ ui_mainwindow.h: mainwindow.ui \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvalidator.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qregularexpression.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QWidget \
-		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QFocusEvent
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QFocusEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcoreevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnamespace.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcore-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcoreexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsystemdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qprocessordetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompilerdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtypeinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerfwd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsysinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlogging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qflags.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbasicatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_bootstrap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qgenericatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_cxx11.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobalstatic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnumeric.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qversiontagging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtmetamacros.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrefcount.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpair.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydatapointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydataops.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainertools_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QGestureEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qgesture.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtgui-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgets-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstring.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qchar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringliteral.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qanystringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qutf8stringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringtokenizer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringbuilder.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhashfunctions.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterator.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearraylist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringmatcher.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetatype.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvarlengtharray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopeguard.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatastream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevicebase.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterable.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetacontainer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtaggedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmath.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbindingstorage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatetime.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcalendar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlocale.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvariant.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhash.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdebug.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtextstream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringconverter.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qset.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontiguouscache.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrect.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmargins.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsize.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qurl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qeventpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvector2d.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvectornd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpointingdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qinputdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qscreen.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QList \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QObject \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QRect \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSize \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSizeF \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QTransform \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtransform.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpolygon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qregion.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs_win.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qline.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnativeinterface.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qkeysequence.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QTableView \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtableview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractitemview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qframe.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qwidget.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qaction.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qicon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpaintdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcolor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgb.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgba64.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qimage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixelformat.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpalette.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbrush.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfont.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontmetrics.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qsizepolicy.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcursor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbitmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qabstractitemmodel.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qitemselectionmodel.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qstyleoption.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractspinbox.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvalidator.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qregularexpression.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qslider.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractslider.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qstyle.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtabbar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtabwidget.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qrubberband.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QWidget \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QPropertyAnimation \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpropertyanimation.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvariantanimation.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qabstractanimation.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnamespace.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcore-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcoreexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsystemdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qprocessordetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompilerdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtypeinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerfwd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsysinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlogging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qflags.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbasicatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_bootstrap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qgenericatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_cxx11.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobalstatic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnumeric.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qversiontagging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtmetamacros.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstring.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qchar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrefcount.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpair.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydatapointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydataops.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainertools_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringliteral.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qanystringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qutf8stringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringtokenizer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringbuilder.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhashfunctions.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterator.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearraylist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringmatcher.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcoreevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetatype.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvarlengtharray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopeguard.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatastream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevicebase.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterable.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetacontainer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtaggedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmath.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbindingstorage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qeasingcurve.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvariant.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhash.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdebug.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtextstream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringconverter.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qset.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontiguouscache.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QFrame \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qframe.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtgui-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgets-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qwidget.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs_win.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmargins.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qaction.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qkeysequence.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qicon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsize.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpaintdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrect.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcolor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgb.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgba64.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qimage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixelformat.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtransform.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpolygon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qregion.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qline.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpalette.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbrush.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfont.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontmetrics.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qsizepolicy.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcursor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbitmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qurl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qeventpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvector2d.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvectornd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpointingdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qinputdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qscreen.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QList \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QObject \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QRect \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSize \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSizeF \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QTransform \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnativeinterface.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QWidget \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QGestureEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qgesture.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatetime.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcalendar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlocale.h
 	/disk/Qt6.3/6.3.1/gcc_64/libexec/uic mainwindow.ui -o ui_mainwindow.h
 
 compiler_yacc_decl_make_all:
@@ -2341,6 +2804,313 @@ QCustomDateEdit.o: QCustomDateEdit.cpp QCustomDateEdit.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QWidget \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QFocusEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QCustomDateEdit.o QCustomDateEdit.cpp
+
+QCustomSideFrame.o: QCustomSideFrame.cpp QCustomSideFrame.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QPropertyAnimation \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpropertyanimation.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvariantanimation.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qabstractanimation.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnamespace.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcore-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcoreexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsystemdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qprocessordetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompilerdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtypeinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerfwd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsysinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlogging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qflags.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbasicatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_bootstrap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qgenericatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_cxx11.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobalstatic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnumeric.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qversiontagging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtmetamacros.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstring.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qchar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrefcount.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpair.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydatapointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydataops.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainertools_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringliteral.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qanystringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qutf8stringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringtokenizer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringbuilder.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhashfunctions.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterator.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearraylist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringmatcher.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcoreevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetatype.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvarlengtharray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopeguard.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatastream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevicebase.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterable.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetacontainer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtaggedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmath.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbindingstorage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qeasingcurve.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvariant.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhash.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdebug.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtextstream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringconverter.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qset.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontiguouscache.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QFrame \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qframe.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtgui-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgets-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qwidget.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs_win.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmargins.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qaction.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qkeysequence.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qicon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsize.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpaintdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrect.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcolor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgb.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgba64.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qimage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixelformat.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtransform.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpolygon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qregion.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qline.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpalette.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbrush.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfont.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontmetrics.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qsizepolicy.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcursor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbitmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qurl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qeventpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvector2d.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvectornd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpointingdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qinputdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qscreen.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QList \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QObject \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QRect \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSize \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSizeF \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QTransform \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnativeinterface.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QWidget \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QGestureEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qgesture.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatetime.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcalendar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlocale.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QCustomSideFrame.o QCustomSideFrame.cpp
+
+QCustomTableView.o: QCustomTableView.cpp QCustomTableView.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcoreevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnamespace.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig-bootstrapped.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qconfig.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcore-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtcoreexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsystemdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qprocessordetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompilerdetection.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtypeinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerfwd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsysinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlogging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qflags.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbasicatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_bootstrap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qgenericatomic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qatomic_cxx11.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qglobalstatic.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnumeric.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qversiontagging.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtmetamacros.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrefcount.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpair.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydatapointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qarraydataops.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainertools_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearrayview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobjectdefs_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QGestureEvent \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qgesture.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiglobal.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtgui-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtguiexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgets-config.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtwidgetsexports.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstring.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qchar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringliteral.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qanystringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qutf8stringview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringtokenizer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringbuilder.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhashfunctions.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterator.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbytearraylist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringlist.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qalgorithms.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringmatcher.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetatype.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcompare.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvarlengtharray.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qscopeguard.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatastream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevicebase.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiterable.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmetacontainer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontainerinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtaggedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmath.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qobject_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qbindingstorage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdatetime.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcalendar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qlocale.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qvariant.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qshareddata_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qhash.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qdebug.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qtextstream.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qstringconverter.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qset.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qcontiguouscache.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsharedpointer_impl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qrect.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qmargins.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qsize.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qevent.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qiodevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qpointer.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qurl.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qeventpoint.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvector2d.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvectornd.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpointingdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qinputdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qscreen.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QList \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QObject \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QRect \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSize \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QSizeF \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QTransform \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qtransform.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpolygon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qregion.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qwindowdefs_win.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qline.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qnativeinterface.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qkeysequence.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QTableView \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtableview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractitemview.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qframe.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qwidget.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qaction.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qicon.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpaintdevice.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcolor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgb.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qrgba64.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qimage.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpixelformat.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qpalette.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbrush.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfont.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontmetrics.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qfontinfo.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qsizepolicy.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qcursor.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qbitmap.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qabstractitemmodel.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qitemselectionmodel.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qstyleoption.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractspinbox.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/qvalidator.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/qregularexpression.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qslider.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qabstractslider.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qstyle.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtabbar.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qtabwidget.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/qrubberband.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QWidget
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o QCustomTableView.o QCustomTableView.cpp
 
 dbmanager.o: dbmanager.cpp dbmanager.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QString \
@@ -3790,15 +4560,15 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtSql/QSqlRecord \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtSql/qsqlrecord.h \
 		ui_mainwindow.h \
-		QCustomDateEdit.h \
-		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QDateEdit \
-		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QFocusEvent \
+		QCustomSideFrame.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QFrame \
+		QCustomTableView.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QTableView \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtCore/QDate \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QIcon \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QApplication \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QComboBox \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QFormLayout \
-		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QFrame \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QGroupBox \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QHBoxLayout \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QHeaderView \
@@ -3807,9 +4577,11 @@ mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QPushButton \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QStatusBar \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QTabWidget \
-		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QTableView \
 		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QTextEdit \
-		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QToolButton
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QToolButton \
+		QCustomDateEdit.h \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtWidgets/QDateEdit \
+		../../Qt6.3/6.3.1/android_arm64_v8a/include/QtGui/QFocusEvent
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o mainwindow.cpp
 
 qrc_qt.o: qrc_qt.cpp 
@@ -3820,6 +4592,9 @@ qrc_qmake_qmake_qm_files.o: qrc_qmake_qmake_qm_files.cpp
 
 moc_QCustomDateEdit.o: moc_QCustomDateEdit.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_QCustomDateEdit.o moc_QCustomDateEdit.cpp
+
+moc_QCustomSideFrame.o: moc_QCustomSideFrame.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_QCustomSideFrame.o moc_QCustomSideFrame.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

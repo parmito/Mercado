@@ -614,7 +614,7 @@ text-decoration: none;
 margin: 4px 2px;
 cursor: pointer;</string>
       </property>
-      <widget class="QTableView" name="m_tableView_Today">
+      <widget class="QCustomTableView" name="m_tableView_Today">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -968,7 +968,7 @@ cursor: pointer;</string>
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QFrame" name="m_SideMenu_Frame">
+   <widget class="QCustomSideFrame" name="m_SideMenu_Frame">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -1126,7 +1126,18 @@ background-color: #fafa73;</string>
   <customwidget>
    <class>QCustomDateEdit</class>
    <extends>QDateEdit</extends>
-   <header location="global">QCustomDateEdit.h</header>
+   <header>QCustomDateEdit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCustomTableView</class>
+   <extends>QTableView</extends>
+   <header location="global">QCustomTableView.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCustomSideFrame</class>
+   <extends>QFrame</extends>
+   <header location="global">QCustomSideFrame.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <tabstops>

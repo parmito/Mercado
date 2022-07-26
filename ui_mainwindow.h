@@ -9,7 +9,8 @@
 #ifndef UI_MAINWINDOW_H
 #define UI_MAINWINDOW_H
 
-#include <QCustomDateEdit.h>
+#include <QCustomSideFrame.h>
+#include <QCustomTableView.h>
 #include <QtCore/QDate>
 #include <QtCore/QVariant>
 #include <QtGui/QIcon>
@@ -26,10 +27,10 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
-#include <QtWidgets/QTableView>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
 #include <QtWidgets/QWidget>
+#include "QCustomDateEdit.h"
 
 QT_BEGIN_NAMESPACE
 
@@ -60,7 +61,7 @@ public:
     QLabel *m_label_DiaMesAno;
     QWidget *m_Tab_Hoje;
     QFrame *m_Frame_Hoje;
-    QTableView *m_tableView_Today;
+    QCustomTableView *m_tableView_Today;
     QWidget *formLayoutWidget;
     QFormLayout *formLayout;
     QWidget *layoutWidget;
@@ -76,7 +77,7 @@ public:
     QLabel *m_LabelDate_HL;
     QLabel *m_LabelLocal_HL;
     QLabel *m_Logo;
-    QFrame *m_SideMenu_Frame;
+    QCustomSideFrame *m_SideMenu_Frame;
     QLabel *m_label_Mercado;
     QPushButton *m_pushButton_GraficoPrecos;
     QLabel *m_Logo_2;
@@ -358,7 +359,7 @@ public:
 "text-decoration: none;\n"
 "margin: 4px 2px;\n"
 "cursor: pointer;"));
-        m_tableView_Today = new QTableView(m_Frame_Hoje);
+        m_tableView_Today = new QCustomTableView(m_Frame_Hoje);
         m_tableView_Today->setObjectName(QString::fromUtf8("m_tableView_Today"));
         m_tableView_Today->setGeometry(QRect(10, 104, 335, 471));
         m_tableView_Today->setAutoFillBackground(true);
@@ -528,7 +529,7 @@ public:
         m_Logo->setLineWidth(1);
         m_Logo->setPixmap(QPixmap(QString::fromUtf8(":/rc/android/assets/img/trolley.png")));
         m_Logo->setScaledContents(true);
-        m_SideMenu_Frame = new QFrame(centralwidget);
+        m_SideMenu_Frame = new QCustomSideFrame(centralwidget);
         m_SideMenu_Frame->setObjectName(QString::fromUtf8("m_SideMenu_Frame"));
         m_SideMenu_Frame->setGeometry(QRect(0, 0, 0, 728));
         sizePolicy.setHeightForWidth(m_SideMenu_Frame->sizePolicy().hasHeightForWidth());

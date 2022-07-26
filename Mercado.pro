@@ -12,6 +12,8 @@ SOURCES += \
     CustomDateTimeDelegate.cpp \
     CustomQSqlTableModel.cpp \
     QCustomDateEdit.cpp \
+    QCustomSideFrame.cpp \
+    QCustomTableView.cpp \
     dbmanager.cpp \
     main.cpp \
     mainwindow.cpp
@@ -20,6 +22,8 @@ HEADERS += \
     CustomDateTimeDelegate.h \
     CustomQSqlTableModel.h \
     QCustomDateEdit.h \
+    QCustomSideFrame.h \
+    QCustomTableView.h \
     dbmanager.h \
     mainwindow.h
 

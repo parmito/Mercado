@@ -84,8 +84,8 @@ MainWindow::MainWindow(QWidget *parent)
     m_AnimationSideMenu->setEasingCurve(QEasingCurve::Linear);
     m_AnimationSideMenu->setDuration(500);
     /*QObject::connect(m_AnimationSideMenu,SIGNAL(stateChanged(int,int)),this,SLOT(SideMenuAnimationStarted()));*/
-    QObject::connect(m_AnimationSideMenu,SIGNAL(finished()),this,SLOT(SideMenuAnimationFinished()));
-
+    /*QObject::connect(m_AnimationSideMenu,SIGNAL(finished()),this,SLOT(SideMenuAnimationFinished()));*/
+    QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerClosed()),this,SLOT(SideMenuAnimationFinished()));
 
     /*
      *
@@ -97,8 +97,13 @@ MainWindow::MainWindow(QWidget *parent)
     stackedLayout->addWidget(ui->m_SideMenu_Frame);*/
 
 
-    Qt::GestureType gesture(Qt::SwipeGesture);
-    ui->centralwidget->grabGesture(gesture,Qt::GestureFlags());
+    Qt::GestureType gestureSwipe(Qt::SwipeGesture);
+    ui->m_SideMenu_Frame->grabGesture(gestureSwipe,Qt::GestureFlags());
+
+
+    Qt::GestureType gesturePanAndHold(Qt::TapAndHoldGesture);
+    ui->m_tableView_Today->grabGesture(gesturePanAndHold,Qt::GestureFlags());
+
 
     m_StartPointDrawer = new QPointF(0,0);
     m_EndPointDrawer = new QPointF(0,0);
@@ -143,12 +148,10 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
 
+
     m_DialogTableView = new QTableView();
-    m_DialogTableView->setModel(m_proxyModel);
-    /*m_DialogTableView->setSortingEnabled(true);*/
+    m_DialogTableView->setModel(model);
     m_DialogTableView->setItemDelegateForColumn(3,m_DateTimeDelegate);
-
-
     m_DialogTableView->setColumnHidden(0, true);    // Hide the column id Records
     // Allow the selection of lines
     m_DialogTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -157,7 +160,7 @@ MainWindow::MainWindow(QWidget *parent)
     // Set the size of the columns by content
     m_DialogTableView->resizeColumnsToContents();
     m_DialogTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    m_DialogTableView->horizontalHeader()->setStretchLastSection(true);
+    /*m_DialogTableView->horizontalHeader()->setStretchLastSection(true);*/
 
     m_DialogTableView->setAlternatingRowColors(true);
     m_DialogTableView->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);
@@ -173,6 +176,15 @@ MainWindow::MainWindow(QWidget *parent)
                                      "font-size: 10px;"
                                      "}");
 
+   m_DialogTableView->setFrameStyle(QFrame::StyledPanel);
+   m_DialogTableView->setAutoFillBackground(true);
+
+
+    m_labelSelectItem = new QLabel("Selecione o Item");
+    m_vlayoutSelectItem = new QVBoxLayout();
+    m_bExit = new QPushButton("Voltar");
+
+
     m_ComboBox_Graph = new QComboBox();
     m_ComboBox_Graph->setStyleSheet("  width: 40%;\
                                         background-color: #3ab7c9;\
@@ -180,7 +192,7 @@ MainWindow::MainWindow(QWidget *parent)
                                         combobox-popup: 0;\
                                         border-radius: 8px;\
                                         color: black;\
-                                        font: 14pt \"Ubuntu Thin\"");
+                                        font: 16pt \"Ubuntu Thin\"");
 
     m_ComboBox_Graph->setMaxVisibleItems(5);
 
@@ -193,7 +205,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_axisY = new QValueAxis();
 
     m_DialogQChart->legend()->hide();
-    m_DialogQChart->setTitleFont(QFont("Times", 10, QFont::Bold));
+    m_DialogQChart->setTitleFont(QFont("Times", 12, QFont::Bold));
     m_DialogQChart->setTitle("Preço dos Itens");
 
 
@@ -229,7 +241,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_axisX->setFormat("dd.MM.yyyy");
     m_axisX->setRange(QDateTime(QDate(2022,7,1),QTime(0,0,0,0),Qt::LocalTime,0),\
                       QDateTime(QDate(2022,7,20),QTime(0,0,0,0),Qt::LocalTime,0));
-    m_axisX->setLabelsAngle(-45);
+    m_axisX->setLabelsAngle(-90);
     m_axisX->setLabelsFont(QFont("Times", 10, QFont::Bold));
     m_axisX->setTickCount(4);
 
@@ -245,7 +257,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_DialogChartView->chart()->setAxisY(m_axisY, m_DialogSeries);
     m_DialogChartView->setFont(QFont("Times", 10, QFont::Bold));
 
-
+    m_QtyOfItemsComboBox = 0;
 }
 
 
@@ -267,6 +279,7 @@ MainWindow::MainWindow(QWidget *parent)
 }*/
 
 /* SLOT for QPropertyAnimation*/
+#if 0
 void MainWindow::SideMenuAnimationFinished()
 {
     qDebug() <<" Side Menu Animation finished:" << m_SideMenuStatus;
@@ -283,6 +296,15 @@ void MainWindow::SideMenuAnimationFinished()
             break;
     }
 }
+#endif
+void MainWindow::SideMenuAnimationFinished()
+{
+    qDebug() <<" Side Menu Animation finished:" << m_SideMenuStatus;
+    iHoverEventCnt = 0;
+    ui->m_pushButton_Drawer->setVisible(true);
+    ui->m_tabWidget_Main->setDisabled(false);
+}
+
 
 void MainWindow::SideMenuAnimation(tenSideMenuStatus status)
 {
@@ -347,41 +369,39 @@ bool MainWindow::gestureEvent(QHoverEvent *event)
                 this->SideMenuAnimation(enOPENED);
             }
             break;
-
-        case 2:/* First action to close*/
+        /* First action to close*/
+        /*case 2:
             if(m_CurrPointDrawer->x() >= m_EndPointDrawer->x()){
                 iHoverEventCnt++;
                 m_EndPointDrawer->setX(m_CurrPointDrawer->x());
             }
-            break;
+            break;*/
 
-        case 3:/* 2nd action to close*/
+        /* 2nd action to close*/
+        /*case 3:
             if(m_CurrPointDrawer->x() < m_EndPointDrawer->x())
             {
                 iHoverEventCnt = 0;
                 this->SideMenuAnimation(enCLOSED);
             }
-            break;
+            break;*/
     }
     return true;
 }
 
-void MainWindow::swipeTriggered(QSwipeGesture* gesture)
+/*void MainWindow::swipeTriggered(QSwipeGesture* gesture)
 {
     if (gesture->state() == Qt::GestureFinished) {
         if (gesture->horizontalDirection() == QSwipeGesture::Left
             || gesture->verticalDirection() == QSwipeGesture::Up) {
             qDebug() << "swipeTriggered(): swipe to previous";
-            //this->SideMenuAnimation();
-            //goPrevImage();
         } else {
             qDebug() << "swipeTriggered(): swipe to next";
-            //goNextImage();
         }
         update();
     }
+}*/
 
-}
 template<typename TItem> QList<TItem>MainWindow::RemoveDuplicatesItemList(void)
 {
     QList<QString> strListResult;
@@ -449,14 +469,13 @@ void MainWindow::setupModel(const QString &tableName, const QStringList &headers
         model->setHeaderData(i,Qt::Horizontal,headers[j]);
     }
     // Set Sort Ascending steering column data
-    /*model->setSort(3,Qt::AscendingOrder);*/
     m_proxyModel->sort(3, Qt::AscendingOrder);
 }
 
 void MainWindow::createUI()
 {
     qDebug() << "createUI";
-    ui->m_tableView_Today->setModel(m_proxyModel);     // We set the model on the TableView
+    ui->m_tableView_Today->setModel(model);     // We set the model on the TableView
     /*ui->m_tableView_Today->setSortingEnabled(true);*/
     ui->m_tableView_Today->setItemDelegateForColumn(3,m_DateTimeDelegate);    
     ui->m_tableView_Today->setColumnHidden(0, true);    // Hide the column id Records   
@@ -470,17 +489,19 @@ void MainWindow::createUI()
     ui->m_tableView_Today->horizontalHeader()->setStretchLastSection(true);
 
     ui->m_tableView_Today->setAlternatingRowColors(true);
+    /*ui->m_tableView_Today->horizontalHeader()->setDefaultAlignment(Qt::AlignLeft);*/
     ui->m_tableView_Today->horizontalHeader()->setStyleSheet("QHeaderView{"
                                          "background-color: rgb(250, 115, 115);"
-                                         "font-size: 16px;"
+                                         "font-size: 14px;"
                                          "font-weight: bold;"
                                          "}");
 
     ui->m_tableView_Today->setStyleSheet("QTableView{"
                                          "background-color: rgb(250, 250, 115);"
                                          "alternate-background-color: rgb(250, 115, 115);"
-                                         "font-size: 12px;"
+                                         "font-size: 10px;"
                                          "}");
+
 
     /* Filtering SQLite data */
     QDateTime now = QDateTime::currentDateTime();
@@ -677,29 +698,31 @@ void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
 {    
     QDialog *Dialog = new QDialog();
     Dialog->setFixedSize(340,640);
-    QLabel *label = new QLabel("Selecione o Item");
-    QVBoxLayout *vlayout = new QVBoxLayout;
-    QAbstractButton *bExit = new QPushButton("Voltar");
 
-    label->setStyleSheet("font-size: 10px;");
+    m_labelSelectItem->setStyleSheet("font-size: 16px;");
 
     QList<QString> strListResult;
     strListResult = RemoveDuplicatesItemList<QString>();
-    m_ComboBox_Graph->clear();
-    for(int i = 0; i < strListResult.size();i++)
-    {
-        m_ComboBox_Graph->addItem(strListResult.at(i));
-    }
-    QObject::connect(m_ComboBox_Graph,SIGNAL(currentTextChanged(const QString)),this,SLOT(on_m_ComboBox_Graph_TextChanged(const QString)));
 
-    vlayout->addWidget(label);
-    vlayout->addWidget(m_ComboBox_Graph);
-    vlayout->addWidget(m_DialogTableView);
-    vlayout->addWidget(m_DialogChartView);
-    vlayout->addWidget(bExit);
-    Dialog->setLayout(vlayout);
+    if(m_QtyOfItemsComboBox != strListResult.size())
+    {
+        m_ComboBox_Graph->clear();
+        for(int i = 0; i < strListResult.size();i++)
+        {
+            m_ComboBox_Graph->addItem(strListResult.at(i));
+        }
+        m_QtyOfItemsComboBox = strListResult.size();
+    }
+
+    m_vlayoutSelectItem->addWidget(m_labelSelectItem);
+    m_vlayoutSelectItem->addWidget(m_ComboBox_Graph);
+    m_vlayoutSelectItem->addWidget(m_DialogTableView);
+    m_vlayoutSelectItem->addWidget(m_DialogChartView);
+    m_vlayoutSelectItem->addWidget(m_bExit);
+    Dialog->setLayout(m_vlayoutSelectItem);
     Dialog->show();
-    Dialog->connect(bExit,SIGNAL(clicked()),Dialog,SLOT(close()));
+    Dialog->connect(m_bExit,SIGNAL(clicked()),Dialog,SLOT(close()));
+    QObject::connect(m_ComboBox_Graph,SIGNAL(currentTextChanged(const QString)),this,SLOT(on_m_ComboBox_Graph_TextChanged(const QString)));
 }
 
 
@@ -707,8 +730,6 @@ void MainWindow::on_m_ComboBox_Graph_TextChanged(const QString &arg1)
 {
     QString strSqliteFilterClause;
     QList<QString> strListResult;
-
-    qDebug() << "on_m_ComboBox_Graph_TextChanged";
 
     if(m_ComboBox_Graph->currentText() != "*" && m_ComboBox_Graph->currentText() != "")
     {
@@ -814,4 +835,15 @@ void MainWindow::on_m_ComboBoxLocal_HL_currentTextChanged(const QString &arg1)
     this->on_Filtrar_clicked();
 
 }
+
+/*void MainWindow::on_m_tableView_Today_pressed(const QModelIndex &index)
+{
+
+}
+
+
+void MainWindow::on_m_tableView_Today_entered(const QModelIndex &index)
+{
+    model->selectRow(index.row());
+}*/
 
