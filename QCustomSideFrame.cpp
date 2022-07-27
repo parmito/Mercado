@@ -3,10 +3,10 @@
 QCustomSideFrame::QCustomSideFrame(QWidget *parent)
     :QFrame(parent)
 {
-    m_StartPointDrawer = new QPointF(0,0);
-    m_EndPointDrawer = new QPointF(0,0);
+    /*m_StartPointDrawer = new QPointF(0,0);
+    m_EndPointDrawer = new QPointF(0,0);*/
     m_CurrPointDrawer = new QPointF(0,0);
-    iHoverEventCnt = 0;
+    /*iHoverEventCnt = 0;*/
 
     m_AnimationSideMenu = new QPropertyAnimation(this, "size");
     m_AnimationSideMenu->setEasingCurve(QEasingCurve::Linear);
