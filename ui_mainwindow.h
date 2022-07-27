@@ -573,6 +573,10 @@ public:
         m_pushButton_Drawer->setStyleSheet(QString::fromUtf8(""));
         m_pushButton_Drawer->setAutoDefault(true);
         MainWindow->setCentralWidget(centralwidget);
+        m_tabWidget_Main->raise();
+        m_Logo->raise();
+        m_pushButton_Drawer->raise();
+        m_SideMenu_Frame->raise();
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));
         menubar->setGeometry(QRect(0, 0, 375, 28));

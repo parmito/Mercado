@@ -22,19 +22,22 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_QCustomSideFrame_t {
-    const uint offsetsAndSize[6];
-    char stringdata0[31];
+    const uint offsetsAndSize[10];
+    char stringdata0[53];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_QCustomSideFrame_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_QCustomSideFrame_t qt_meta_stringdata_QCustomSideFrame = {
     {
 QT_MOC_LITERAL(0, 16), // "QCustomSideFrame"
-QT_MOC_LITERAL(17, 12), // "DrawerClosed"
-QT_MOC_LITERAL(30, 0) // ""
+QT_MOC_LITERAL(17, 20), // "onHoverEventDetected"
+QT_MOC_LITERAL(38, 0), // ""
+QT_MOC_LITERAL(39, 7), // "QEvent*"
+QT_MOC_LITERAL(47, 5) // "event"
 
     },
-    "QCustomSideFrame\0DrawerClosed\0"
+    "QCustomSideFrame\0onHoverEventDetected\0"
+    "\0QEvent*\0event"
 };
 #undef QT_MOC_LITERAL
 
@@ -49,13 +52,13 @@ static const uint qt_meta_data_QCustomSideFrame[] = {
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       0,       // signalCount
 
- // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   20,    2, 0x06,    1 /* Public */,
+ // slots: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   20,    2, 0x08,    1 /* Private */,
 
- // signals: parameters
-    QMetaType::Void,
+ // slots: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
 
        0        // eod
 };
@@ -66,20 +69,10 @@ void QCustomSideFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         auto *_t = static_cast<QCustomSideFrame *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->DrawerClosed(); break;
+        case 0: _t->onHoverEventDetected((*reinterpret_cast< std::add_pointer_t<QEvent*>>(_a[1]))); break;
         default: ;
         }
-    } else if (_c == QMetaObject::IndexOfMethod) {
-        int *result = reinterpret_cast<int *>(_a[0]);
-        {
-            using _t = void (QCustomSideFrame::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&QCustomSideFrame::DrawerClosed)) {
-                *result = 0;
-                return;
-            }
-        }
     }
-    (void)_a;
 }
 
 const QMetaObject QCustomSideFrame::staticMetaObject = { {
@@ -89,8 +82,8 @@ const QMetaObject QCustomSideFrame::staticMetaObject = { {
     qt_static_metacall,
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_QCustomSideFrame_t
-, QtPrivate::TypeAndForceComplete<QCustomSideFrame, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
-
+, QtPrivate::TypeAndForceComplete<QCustomSideFrame, std::true_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QEvent *, std::false_type>
 
 
 >,
@@ -126,12 +119,6 @@ int QCustomSideFrame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 1;
     }
     return _id;
-}
-
-// SIGNAL 0
-void QCustomSideFrame::DrawerClosed()
-{
-    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

@@ -1109,6 +1109,10 @@ background-color: #fafa73;</string>
      <bool>true</bool>
     </property>
    </widget>
+   <zorder>m_tabWidget_Main</zorder>
+   <zorder>m_Logo</zorder>
+   <zorder>m_pushButton_Drawer</zorder>
+   <zorder>m_SideMenu_Frame</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

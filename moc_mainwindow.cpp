@@ -47,55 +47,42 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    const uint offsetsAndSize[48];
-    char stringdata0[588];
+    const uint offsetsAndSize[34];
+    char stringdata0[377];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(offsetof(qt_meta_stringdata_MainWindow_t, stringdata0) + ofs), len 
 static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
     {
 QT_MOC_LITERAL(0, 10), // "MainWindow"
-QT_MOC_LITERAL(11, 33), // "on_m_toolButton_Adicionar_cli..."
-QT_MOC_LITERAL(45, 0), // ""
-QT_MOC_LITERAL(46, 41), // "on_m_toolButton_AdicionarEsco..."
-QT_MOC_LITERAL(88, 18), // "on_Filtrar_clicked"
-QT_MOC_LITERAL(107, 30), // "on_m_pushButton_Drawer_clicked"
-QT_MOC_LITERAL(138, 25), // "SideMenuAnimationFinished"
-QT_MOC_LITERAL(164, 37), // "on_m_pushButton_GraficoPrecos..."
-QT_MOC_LITERAL(202, 21), // "on_pushButton_clicked"
-QT_MOC_LITERAL(224, 16), // "on_QDate_clicked"
-QT_MOC_LITERAL(241, 25), // "on_CalendarWidget_Changed"
-QT_MOC_LITERAL(267, 4), // "date"
-QT_MOC_LITERAL(272, 21), // "on_m_DateEdit_onClick"
-QT_MOC_LITERAL(294, 29), // "on_m_DateEdit_userDateChanged"
-QT_MOC_LITERAL(324, 39), // "on_m_ComboBoxItem_HL_currentT..."
-QT_MOC_LITERAL(364, 4), // "arg1"
-QT_MOC_LITERAL(369, 40), // "on_m_ComboBoxPrice_HL_current..."
-QT_MOC_LITERAL(410, 40), // "on_m_ComboBoxLocal_HL_current..."
-QT_MOC_LITERAL(451, 31), // "on_m_ComboBox_Graph_TextChanged"
-QT_MOC_LITERAL(483, 28), // "on_m_tableView_Today_clicked"
-QT_MOC_LITERAL(512, 11), // "QModelIndex"
-QT_MOC_LITERAL(524, 5), // "index"
-QT_MOC_LITERAL(530, 28), // "on_m_tableView_Today_pressed"
-QT_MOC_LITERAL(559, 28) // "on_m_tableView_Today_entered"
+QT_MOC_LITERAL(11, 10), // "HoverEvent"
+QT_MOC_LITERAL(22, 0), // ""
+QT_MOC_LITERAL(23, 7), // "QEvent*"
+QT_MOC_LITERAL(31, 5), // "event"
+QT_MOC_LITERAL(37, 33), // "on_m_toolButton_Adicionar_cli..."
+QT_MOC_LITERAL(71, 41), // "on_m_toolButton_AdicionarEsco..."
+QT_MOC_LITERAL(113, 18), // "on_Filtrar_clicked"
+QT_MOC_LITERAL(132, 37), // "on_m_pushButton_GraficoPrecos..."
+QT_MOC_LITERAL(170, 16), // "on_QDate_clicked"
+QT_MOC_LITERAL(187, 25), // "on_CalendarWidget_Changed"
+QT_MOC_LITERAL(213, 4), // "date"
+QT_MOC_LITERAL(218, 39), // "on_m_ComboBoxItem_HL_currentT..."
+QT_MOC_LITERAL(258, 4), // "arg1"
+QT_MOC_LITERAL(263, 40), // "on_m_ComboBoxPrice_HL_current..."
+QT_MOC_LITERAL(304, 40), // "on_m_ComboBoxLocal_HL_current..."
+QT_MOC_LITERAL(345, 31) // "on_m_ComboBox_Graph_TextChanged"
 
     },
-    "MainWindow\0on_m_toolButton_Adicionar_clicked\0"
-    "\0on_m_toolButton_AdicionarEscolher_clicked\0"
-    "on_Filtrar_clicked\0on_m_pushButton_Drawer_clicked\0"
-    "SideMenuAnimationFinished\0"
+    "MainWindow\0HoverEvent\0\0QEvent*\0event\0"
+    "on_m_toolButton_Adicionar_clicked\0"
+    "on_m_toolButton_AdicionarEscolher_clicked\0"
+    "on_Filtrar_clicked\0"
     "on_m_pushButton_GraficoPrecos_clicked\0"
-    "on_pushButton_clicked\0on_QDate_clicked\0"
-    "on_CalendarWidget_Changed\0date\0"
-    "on_m_DateEdit_onClick\0"
-    "on_m_DateEdit_userDateChanged\0"
-    "on_m_ComboBoxItem_HL_currentTextChanged\0"
+    "on_QDate_clicked\0on_CalendarWidget_Changed\0"
+    "date\0on_m_ComboBoxItem_HL_currentTextChanged\0"
     "arg1\0on_m_ComboBoxPrice_HL_currentTextChanged\0"
     "on_m_ComboBoxLocal_HL_currentTextChanged\0"
-    "on_m_ComboBox_Graph_TextChanged\0"
-    "on_m_tableView_Today_clicked\0QModelIndex\0"
-    "index\0on_m_tableView_Today_pressed\0"
-    "on_m_tableView_Today_entered"
+    "on_m_ComboBox_Graph_TextChanged"
 };
 #undef QT_MOC_LITERAL
 
@@ -105,32 +92,30 @@ static const uint qt_meta_data_MainWindow[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-      18,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags, initial metatype offsets
+       1,    1,   80,    2, 0x06,    1 /* Public */,
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  122,    2, 0x08,    1 /* Private */,
-       3,    0,  123,    2, 0x08,    2 /* Private */,
-       4,    0,  124,    2, 0x08,    3 /* Private */,
-       5,    0,  125,    2, 0x08,    4 /* Private */,
-       6,    0,  126,    2, 0x08,    5 /* Private */,
-       7,    0,  127,    2, 0x08,    6 /* Private */,
-       8,    0,  128,    2, 0x08,    7 /* Private */,
-       9,    0,  129,    2, 0x08,    8 /* Private */,
-      10,    1,  130,    2, 0x08,    9 /* Private */,
-      12,    0,  133,    2, 0x08,   11 /* Private */,
-      13,    1,  134,    2, 0x08,   12 /* Private */,
-      14,    1,  137,    2, 0x08,   14 /* Private */,
-      16,    1,  140,    2, 0x08,   16 /* Private */,
-      17,    1,  143,    2, 0x08,   18 /* Private */,
-      18,    1,  146,    2, 0x08,   20 /* Private */,
-      19,    1,  149,    2, 0x08,   22 /* Private */,
-      22,    1,  152,    2, 0x08,   24 /* Private */,
-      23,    1,  155,    2, 0x08,   26 /* Private */,
+       5,    0,   83,    2, 0x08,    3 /* Private */,
+       6,    0,   84,    2, 0x08,    4 /* Private */,
+       7,    0,   85,    2, 0x08,    5 /* Private */,
+       8,    0,   86,    2, 0x08,    6 /* Private */,
+       9,    0,   87,    2, 0x08,    7 /* Private */,
+      10,    1,   88,    2, 0x08,    8 /* Private */,
+      12,    1,   91,    2, 0x08,   10 /* Private */,
+      14,    1,   94,    2, 0x08,   12 /* Private */,
+      15,    1,   97,    2, 0x08,   14 /* Private */,
+      16,    1,  100,    2, 0x08,   16 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void, 0x80000000 | 3,    4,
 
  // slots: parameters
     QMetaType::Void,
@@ -138,19 +123,11 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
     QMetaType::Void, QMetaType::QDate,   11,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::QDate,   11,
-    QMetaType::Void, QMetaType::QString,   15,
-    QMetaType::Void, QMetaType::QString,   15,
-    QMetaType::Void, QMetaType::QString,   15,
-    QMetaType::Void, QMetaType::QString,   15,
-    QMetaType::Void, 0x80000000 | 20,   21,
-    QMetaType::Void, 0x80000000 | 20,   21,
-    QMetaType::Void, 0x80000000 | 20,   21,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::QString,   13,
+    QMetaType::Void, QMetaType::QString,   13,
 
        0        // eod
 };
@@ -161,19 +138,27 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->on_m_toolButton_Adicionar_clicked(); break;
-        case 1: _t->on_m_toolButton_AdicionarEscolher_clicked(); break;
-        case 2: _t->on_Filtrar_clicked(); break;
-        case 3: _t->on_m_pushButton_Drawer_clicked(); break;
-        case 4: _t->SideMenuAnimationFinished(); break;
-        case 5: _t->on_m_pushButton_GraficoPrecos_clicked(); break;
-        case 7: _t->on_QDate_clicked(); break;
-        case 8: _t->on_CalendarWidget_Changed((*reinterpret_cast< std::add_pointer_t<QDate>>(_a[1]))); break;
-        case 11: _t->on_m_ComboBoxItem_HL_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 12: _t->on_m_ComboBoxPrice_HL_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 13: _t->on_m_ComboBoxLocal_HL_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 14: _t->on_m_ComboBox_Graph_TextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 0: _t->HoverEvent((*reinterpret_cast< std::add_pointer_t<QEvent*>>(_a[1]))); break;
+        case 1: _t->on_m_toolButton_Adicionar_clicked(); break;
+        case 2: _t->on_m_toolButton_AdicionarEscolher_clicked(); break;
+        case 3: _t->on_Filtrar_clicked(); break;
+        case 4: _t->on_m_pushButton_GraficoPrecos_clicked(); break;
+        case 5: _t->on_QDate_clicked(); break;
+        case 6: _t->on_CalendarWidget_Changed((*reinterpret_cast< std::add_pointer_t<QDate>>(_a[1]))); break;
+        case 7: _t->on_m_ComboBoxItem_HL_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 8: _t->on_m_ComboBoxPrice_HL_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 9: _t->on_m_ComboBoxLocal_HL_currentTextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 10: _t->on_m_ComboBox_Graph_TextChanged((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        {
+            using _t = void (MainWindow::*)(QEvent * );
+            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&MainWindow::HoverEvent)) {
+                *result = 0;
+                return;
+            }
         }
     }
 }
@@ -185,8 +170,8 @@ const QMetaObject MainWindow::staticMetaObject = { {
     qt_static_metacall,
     nullptr,
 qt_incomplete_metaTypeArray<qt_meta_stringdata_MainWindow_t
-, QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>
-, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QDate &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QDate &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QModelIndex &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QModelIndex &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QModelIndex &, std::false_type>
+, QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QEvent *, std::false_type>
+, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QDate &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
 
 
 >,
@@ -213,15 +198,22 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 18)
+        if (_id < 11)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 18;
+        _id -= 11;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 18)
+        if (_id < 11)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 18;
+        _id -= 11;
     }
     return _id;
+}
+
+// SIGNAL 0
+void MainWindow::HoverEvent(QEvent * _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 0, _a);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

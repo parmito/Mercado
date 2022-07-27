@@ -80,12 +80,18 @@ MainWindow::MainWindow(QWidget *parent)
     ui->centralwidget->setLayout(layout);
     layout->addWidget(container);*/
 
+#if 0 /* Refactoring to transfer control do QCustomSideFrame*/
     m_AnimationSideMenu = new QPropertyAnimation(ui->m_SideMenu_Frame, "size");
     m_AnimationSideMenu->setEasingCurve(QEasingCurve::Linear);
     m_AnimationSideMenu->setDuration(500);
+#endif
     /*QObject::connect(m_AnimationSideMenu,SIGNAL(stateChanged(int,int)),this,SLOT(SideMenuAnimationStarted()));*/
     /*QObject::connect(m_AnimationSideMenu,SIGNAL(finished()),this,SLOT(SideMenuAnimationFinished()));*/
-    QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerClosed()),this,SLOT(SideMenuAnimationFinished()));
+    /*QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerClosed()),this,SLOT(SideMenuAnimationFinished()));*/
+    QObject::connect(this,SIGNAL(HoverEvent(QEvent*)),ui->m_SideMenu_Frame,SLOT(onHoverEventDetected(QEvent*)));
+    /*QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerOpened()),this,SLOT(on_DrawerOpened()));
+    QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerClosed()),this,SLOT(on_DrawerClosed()));*/
+
 
     /*
      *
@@ -104,12 +110,12 @@ MainWindow::MainWindow(QWidget *parent)
     Qt::GestureType gesturePanAndHold(Qt::TapAndHoldGesture);
     ui->m_tableView_Today->grabGesture(gesturePanAndHold,Qt::GestureFlags());
 
-
+#if 0 /* Refactoring to transfer control do QCustomSideFrame*/
     m_StartPointDrawer = new QPointF(0,0);
     m_EndPointDrawer = new QPointF(0,0);
     m_CurrPointDrawer = new QPointF(0,0);
     iHoverEventCnt = 0;
-
+#endif
     QPixmap pixmap(":/rc/android/assets/img/drawerButton.jpg");
     QIcon ButtonIcon(pixmap);
     ui->m_pushButton_Drawer->setIcon(ButtonIcon);
@@ -263,7 +269,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 /* SLOT for QPropertyAnimation*/
-/*void MainWindow::SideMenuAnimationStarted()
+#if 0 /* Refactoring to transfer control do QCustomSideFrame*/
+void MainWindow::SideMenuAnimationStarted()
 {
     qDebug() <<" Side Menu Animation started:" << m_SideMenuStatus;
     switch(m_SideMenuStatus)
@@ -276,10 +283,11 @@ MainWindow::MainWindow(QWidget *parent)
     case enCLOSED:
         break;
     }
-}*/
+}
+#endif
 
 /* SLOT for QPropertyAnimation*/
-#if 0
+#if 0 /* Refactoring to transfer control do QCustomSideFrame*/
 void MainWindow::SideMenuAnimationFinished()
 {
     qDebug() <<" Side Menu Animation finished:" << m_SideMenuStatus;
@@ -297,6 +305,8 @@ void MainWindow::SideMenuAnimationFinished()
     }
 }
 #endif
+
+#if 0 /* Refactoring to transfer control do QCustomSideFrame*/
 void MainWindow::SideMenuAnimationFinished()
 {
     qDebug() <<" Side Menu Animation finished:" << m_SideMenuStatus;
@@ -304,8 +314,9 @@ void MainWindow::SideMenuAnimationFinished()
     ui->m_pushButton_Drawer->setVisible(true);
     ui->m_tabWidget_Main->setDisabled(false);
 }
+#endif
 
-
+#if 0 /* Refactoring to transfer control do QCustomSideFrame*/
 void MainWindow::SideMenuAnimation(tenSideMenuStatus status)
 {
     m_AnimationSideMenu->stop();
@@ -338,7 +349,7 @@ void MainWindow::SideMenuAnimation(tenSideMenuStatus status)
             break;
     }
 }
-
+#endif
 
 bool MainWindow::event(QEvent *event)
 {
@@ -350,6 +361,10 @@ bool MainWindow::event(QEvent *event)
 
 bool MainWindow::gestureEvent(QHoverEvent *event)
 {
+    qDebug() << " MainWindow HoverEvent";
+    emit HoverEvent(event);
+
+#if 0/* Refactoring to transfer control do QCustomSideFrame*/
     *m_CurrPointDrawer = event->position();
 
     switch(iHoverEventCnt)
@@ -386,6 +401,7 @@ bool MainWindow::gestureEvent(QHoverEvent *event)
             }
             break;*/
     }
+#endif
     return true;
 }
 
@@ -401,6 +417,22 @@ bool MainWindow::gestureEvent(QHoverEvent *event)
         update();
     }
 }*/
+
+#if 0
+void MainWindow::on_DrawerOpened(void)
+{
+    ui->m_tabWidget_Main->setDisabled(true);
+    ui->m_pushButton_Drawer->setVisible(false);
+}
+
+void MainWindow::on_DrawerClosed(void)
+{
+    ui->m_tabWidget_Main->setDisabled(false);
+    ui->m_pushButton_Drawer->setVisible(true);
+}
+#endif
+
+
 
 template<typename TItem> QList<TItem>MainWindow::RemoveDuplicatesItemList(void)
 {
@@ -688,11 +720,12 @@ void MainWindow::on_Filtrar_clicked()
     model->select(); /* Fetches the data from the table*/
 }
 
+#if 0 /* Refactoring to transfer control do QCustomSideFrame*/
 void MainWindow::on_m_pushButton_Drawer_clicked()
 {
     this->SideMenuAnimation(enOPENED);
 }
-
+#endif
 
 void MainWindow::on_m_pushButton_GraficoPrecos_clicked()
 {    
@@ -836,14 +869,4 @@ void MainWindow::on_m_ComboBoxLocal_HL_currentTextChanged(const QString &arg1)
 
 }
 
-/*void MainWindow::on_m_tableView_Today_pressed(const QModelIndex &index)
-{
-
-}
-
-
-void MainWindow::on_m_tableView_Today_entered(const QModelIndex &index)
-{
-    model->selectRow(index.row());
-}*/
 

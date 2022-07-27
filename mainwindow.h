@@ -45,21 +45,15 @@ private slots:
 
     void on_Filtrar_clicked();
 
-    void on_m_pushButton_Drawer_clicked();
+    /*void on_m_pushButton_Drawer_clicked();
 
-    void SideMenuAnimationFinished();
+    void SideMenuAnimationFinished();*/
 
     void on_m_pushButton_GraficoPrecos_clicked();
-
-    void on_pushButton_clicked();
 
     void on_QDate_clicked();
 
     void on_CalendarWidget_Changed(const QDate& date);
-
-    void on_m_DateEdit_onClick();
-
-    void on_m_DateEdit_userDateChanged(const QDate &date);
 
     void on_m_ComboBoxItem_HL_currentTextChanged(const QString &arg1);
 
@@ -69,11 +63,12 @@ private slots:
 
     void on_m_ComboBox_Graph_TextChanged(const QString &arg1);
 
-    void on_m_tableView_Today_clicked(const QModelIndex &index);
+    /*void on_DrawerOpened(void);
 
-    void on_m_tableView_Today_pressed(const QModelIndex &index);
+    void on_DrawerClosed(void);*/
 
-    void on_m_tableView_Today_entered(const QModelIndex &index);
+signals:
+    void HoverEvent(QEvent *event);
 
 private:
     Ui::MainWindow *ui;
