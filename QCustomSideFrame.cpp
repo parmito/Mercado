@@ -12,6 +12,7 @@ QCustomSideFrame::QCustomSideFrame(QWidget *parent)
     m_AnimationSideMenu->setEasingCurve(QEasingCurve::Linear);
     m_AnimationSideMenu->setDuration(250);
 
+    enDrawerTrendingMovement = enNO_MOVEMENT;
     /*m_SideMenuStatus =  enCLOSED_DRAWER;*/
     QObject::connect(m_AnimationSideMenu,SIGNAL(finished()),this,SLOT(SideMenuAnimationFinished()));
 }
@@ -67,6 +68,7 @@ void QCustomSideFrame::onHoverEventDetected(QEvent *event)
     qDebug() << "onHoverEventDetected" << "x:" << hoverEvent->position().x()\
              << "old" << m_CurrPointDrawer->x();
 
+    /* Opening movement*/
     if((hoverEvent->position().x() > m_CurrPointDrawer->x()) && iHoverEventCnt < 5){
         iHoverEventCnt++;
     }
@@ -81,11 +83,13 @@ void QCustomSideFrame::onHoverEventDetected(QEvent *event)
     {
         m_AnimationSideMenu->setEndValue(QSize(hoverEvent->position().x(), this->height()));
         m_AnimationSideMenu->start();
+        enDrawerTrendingMovement = enOPENING_TREND;
     }
     if(iHoverEventCnt <= 0 && this->width() > 0)
     {
         m_AnimationSideMenu->setEndValue(QSize(hoverEvent->position().x(), this->height()));
         m_AnimationSideMenu->start();
+        enDrawerTrendingMovement = enCLOSING_TREND;
     }
 }
 
@@ -127,8 +131,25 @@ void QCustomSideFrame::SideMenuAnimationFinished()
     qDebug() <<" SideMenu Animation finished";
 
     if(this->width() > 20){
-        emit DrawerOpened();
-    }else emit DrawerClosed();
+        if( enDrawerTrendingMovement == enOPENING_TREND )
+        {
+            emit DrawerOpened();
+            enDrawerTrendingMovement = enNO_MOVEMENT;
+        }else
+        {
+            if( enDrawerTrendingMovement == enCLOSING_TREND )
+            {
+                emit DrawerClosed();
+                m_AnimationSideMenu->setEndValue(QSize(0, this->height()));
+                m_AnimationSideMenu->start();
+                enDrawerTrendingMovement = enNO_MOVEMENT;
+            }
+        }
+    }
+    else
+    {
+        emit DrawerClosed();
+    }
 }
 
 void QCustomSideFrame::onForceDrawerOpened()

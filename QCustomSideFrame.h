@@ -13,6 +13,11 @@ typedef enum {
     enCLOSED_DRAWER
 }tenCustomSideFrameStatus;
 
+typedef enum {
+    enNO_MOVEMENT,
+    enOPENING_TREND,
+    enCLOSING_TREND
+}tenDrawerTrendingMovement;
 
 class QCustomSideFrame : public QFrame
 {
@@ -39,6 +44,7 @@ private:
     /*tenCustomSideFrameStatus m_SideMenuStatus;*/
     /*QSize m_oldSize,m_Size;*/
     /*void SideMenuAnimation(tenCustomSideFrameStatus status);*/
+    tenDrawerTrendingMovement enDrawerTrendingMovement;
 };
 
 #endif // QCUSTOMSIDEFRAME_H
