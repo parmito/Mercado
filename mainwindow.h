@@ -45,9 +45,9 @@ private slots:
 
     void on_Filtrar_clicked();
 
-    /*void on_m_pushButton_Drawer_clicked();
+    /*void on_m_pushButton_Drawer_clicked();*/
 
-    void SideMenuAnimationFinished();*/
+    /*void SideMenuAnimationFinished();*/
 
     void on_m_pushButton_GraficoPrecos_clicked();
 
@@ -63,9 +63,9 @@ private slots:
 
     void on_m_ComboBox_Graph_TextChanged(const QString &arg1);
 
-    /*void on_DrawerOpened(void);
+    void on_DrawerOpened(void);
 
-    void on_DrawerClosed(void);*/
+    void on_DrawerClosed(void);
 
 signals:
     void HoverEvent(QEvent *event);

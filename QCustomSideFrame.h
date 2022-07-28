@@ -24,17 +24,18 @@ public:
     bool resizingEvent(QResizeEvent *event);*/
 
 signals:
-    /*void DrawerOpened(void);
-    void DrawerClosed(void);*/
+    void DrawerOpened(void);
+    void DrawerClosed(void);
 
 private slots:
     void onHoverEventDetected(QEvent *event);
-    /*void SideMenuAnimationFinished();*/
+    void SideMenuAnimationFinished(void);
+    void onForceDrawerOpened(void);
 
 private:
     QPropertyAnimation *m_AnimationSideMenu;
-    QPointF /**m_StartPointDrawer, *m_EndPointDrawer,*/ *m_CurrPointDrawer;
-    /*int iHoverEventCnt;*/
+    QPointF /**m_StartPointDrawer,*/ /**m_EndPointDrawer,*/ *m_CurrPointDrawer;
+    int iHoverEventCnt/*,iHoverUpCnt,iHoverDownCnt*/;
     /*tenCustomSideFrameStatus m_SideMenuStatus;*/
     /*QSize m_oldSize,m_Size;*/
     /*void SideMenuAnimation(tenCustomSideFrameStatus status);*/

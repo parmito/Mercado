@@ -89,9 +89,9 @@ MainWindow::MainWindow(QWidget *parent)
     /*QObject::connect(m_AnimationSideMenu,SIGNAL(finished()),this,SLOT(SideMenuAnimationFinished()));*/
     /*QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerClosed()),this,SLOT(SideMenuAnimationFinished()));*/
     QObject::connect(this,SIGNAL(HoverEvent(QEvent*)),ui->m_SideMenu_Frame,SLOT(onHoverEventDetected(QEvent*)));
-    /*QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerOpened()),this,SLOT(on_DrawerOpened()));
-    QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerClosed()),this,SLOT(on_DrawerClosed()));*/
-
+    QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerOpened()),this,SLOT(on_DrawerOpened()));
+    QObject::connect(ui->m_SideMenu_Frame,SIGNAL(DrawerClosed()),this,SLOT(on_DrawerClosed()));
+    QObject::connect(ui->m_pushButton_Drawer,SIGNAL(clicked()),ui->m_SideMenu_Frame,SLOT(onForceDrawerOpened()));
 
     /*
      *
@@ -418,7 +418,7 @@ bool MainWindow::gestureEvent(QHoverEvent *event)
     }
 }*/
 
-#if 0
+
 void MainWindow::on_DrawerOpened(void)
 {
     ui->m_tabWidget_Main->setDisabled(true);
@@ -430,9 +430,6 @@ void MainWindow::on_DrawerClosed(void)
     ui->m_tabWidget_Main->setDisabled(false);
     ui->m_pushButton_Drawer->setVisible(true);
 }
-#endif
-
-
 
 template<typename TItem> QList<TItem>MainWindow::RemoveDuplicatesItemList(void)
 {
@@ -854,19 +851,16 @@ void MainWindow::on_m_ComboBoxItem_HL_currentTextChanged(const QString &arg1)
     this->on_Filtrar_clicked();
 }
 
-
 void MainWindow::on_m_ComboBoxPrice_HL_currentTextChanged(const QString &arg1)
 {
     qDebug()<< "on_m_ComboBoxPrice_HL_currentTextChanged";
     this->on_Filtrar_clicked();
 }
 
-
 void MainWindow::on_m_ComboBoxLocal_HL_currentTextChanged(const QString &arg1)
 {
     qDebug()<< "on_m_ComboBoxLocal_HL_currentTextChanged";
     this->on_Filtrar_clicked();
-
 }
 
 

@@ -3,17 +3,17 @@
 QCustomSideFrame::QCustomSideFrame(QWidget *parent)
     :QFrame(parent)
 {
-    /*m_StartPointDrawer = new QPointF(0,0);
-    m_EndPointDrawer = new QPointF(0,0);*/
+    /*m_StartPointDrawer = new QPointF(0,0);*/
+    /*m_EndPointDrawer = new QPointF(0,0);*/
     m_CurrPointDrawer = new QPointF(0,0);
-    /*iHoverEventCnt = 0;*/
+    iHoverEventCnt = 0;
 
     m_AnimationSideMenu = new QPropertyAnimation(this, "size");
     m_AnimationSideMenu->setEasingCurve(QEasingCurve::Linear);
     m_AnimationSideMenu->setDuration(250);
 
-    /*m_SideMenuStatus =  enCLOSED_DRAWER;
-    QObject::connect(m_AnimationSideMenu,SIGNAL(finished()),this,SLOT(SideMenuAnimationFinished()));*/
+    /*m_SideMenuStatus =  enCLOSED_DRAWER;*/
+    QObject::connect(m_AnimationSideMenu,SIGNAL(finished()),this,SLOT(SideMenuAnimationFinished()));
 }
 
 #if 0
@@ -64,13 +64,29 @@ void QCustomSideFrame::onHoverEventDetected(QEvent *event)
 void QCustomSideFrame::onHoverEventDetected(QEvent *event)
 {
     QHoverEvent *hoverEvent = static_cast<QHoverEvent*>(event);
-    qDebug() << "onHoverEventDetected";
-    qDebug() << "x:" << hoverEvent->position().x();
+    qDebug() << "onHoverEventDetected" << "x:" << hoverEvent->position().x()\
+             << "old" << m_CurrPointDrawer->x();
 
+    if((hoverEvent->position().x() > m_CurrPointDrawer->x()) && iHoverEventCnt < 5){
+        iHoverEventCnt++;
+    }
+    if((hoverEvent->position().x() < m_CurrPointDrawer->x()) && iHoverEventCnt > 0){
+        iHoverEventCnt--;
+    }
     *m_CurrPointDrawer = hoverEvent->position();
 
-    m_AnimationSideMenu->setEndValue(QSize(m_CurrPointDrawer->x(), this->height()));
-    m_AnimationSideMenu->start();
+    qDebug() << "iHoverEventCnt" << iHoverEventCnt;
+
+    if(iHoverEventCnt >= 5 && this->width() < 270)
+    {
+        m_AnimationSideMenu->setEndValue(QSize(hoverEvent->position().x(), this->height()));
+        m_AnimationSideMenu->start();
+    }
+    if(iHoverEventCnt <= 0 && this->width() > 0)
+    {
+        m_AnimationSideMenu->setEndValue(QSize(hoverEvent->position().x(), this->height()));
+        m_AnimationSideMenu->start();
+    }
 }
 
 #if 0
@@ -105,6 +121,22 @@ void QCustomSideFrame::SideMenuAnimation(tenCustomSideFrameStatus status)
     }
 }
 #endif
+
+void QCustomSideFrame::SideMenuAnimationFinished()
+{
+    qDebug() <<" SideMenu Animation finished";
+
+    if(this->width() > 20){
+        emit DrawerOpened();
+    }else emit DrawerClosed();
+}
+
+void QCustomSideFrame::onForceDrawerOpened()
+{
+    m_AnimationSideMenu->setEndValue(QSize(200, this->height()));
+    m_AnimationSideMenu->start();
+}
+
 
 #if 0
 void QCustomSideFrame::SideMenuAnimationFinished()
