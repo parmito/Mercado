@@ -21,33 +21,33 @@
 QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
-struct qt_meta_stringdata_QCustomSideFrame_t {
+struct qt_meta_stringdata_QTCUSTOMSIDEFRAME__QCustomSideFrame_t {
     const uint offsetsAndSize[18];
-    char stringdata0[125];
+    char stringdata0[144];
 };
 #define QT_MOC_LITERAL(ofs, len) \
-    uint(offsetof(qt_meta_stringdata_QCustomSideFrame_t, stringdata0) + ofs), len 
-static const qt_meta_stringdata_QCustomSideFrame_t qt_meta_stringdata_QCustomSideFrame = {
+    uint(offsetof(qt_meta_stringdata_QTCUSTOMSIDEFRAME__QCustomSideFrame_t, stringdata0) + ofs), len 
+static const qt_meta_stringdata_QTCUSTOMSIDEFRAME__QCustomSideFrame_t qt_meta_stringdata_QTCUSTOMSIDEFRAME__QCustomSideFrame = {
     {
-QT_MOC_LITERAL(0, 16), // "QCustomSideFrame"
-QT_MOC_LITERAL(17, 12), // "DrawerOpened"
-QT_MOC_LITERAL(30, 0), // ""
-QT_MOC_LITERAL(31, 12), // "DrawerClosed"
-QT_MOC_LITERAL(44, 20), // "onHoverEventDetected"
-QT_MOC_LITERAL(65, 7), // "QEvent*"
-QT_MOC_LITERAL(73, 5), // "event"
-QT_MOC_LITERAL(79, 25), // "SideMenuAnimationFinished"
-QT_MOC_LITERAL(105, 19) // "onForceDrawerOpened"
+QT_MOC_LITERAL(0, 35), // "QTCUSTOMSIDEFRAME::QCustomSid..."
+QT_MOC_LITERAL(36, 12), // "DrawerOpened"
+QT_MOC_LITERAL(49, 0), // ""
+QT_MOC_LITERAL(50, 12), // "DrawerClosed"
+QT_MOC_LITERAL(63, 20), // "onHoverEventDetected"
+QT_MOC_LITERAL(84, 7), // "QEvent*"
+QT_MOC_LITERAL(92, 5), // "event"
+QT_MOC_LITERAL(98, 25), // "SideMenuAnimationFinished"
+QT_MOC_LITERAL(124, 19) // "onForceDrawerOpened"
 
     },
-    "QCustomSideFrame\0DrawerOpened\0\0"
-    "DrawerClosed\0onHoverEventDetected\0"
-    "QEvent*\0event\0SideMenuAnimationFinished\0"
-    "onForceDrawerOpened"
+    "QTCUSTOMSIDEFRAME::QCustomSideFrame\0"
+    "DrawerOpened\0\0DrawerClosed\0"
+    "onHoverEventDetected\0QEvent*\0event\0"
+    "SideMenuAnimationFinished\0onForceDrawerOpened"
 };
 #undef QT_MOC_LITERAL
 
-static const uint qt_meta_data_QCustomSideFrame[] = {
+static const uint qt_meta_data_QTCUSTOMSIDEFRAME__QCustomSideFrame[] = {
 
  // content:
       10,       // revision
@@ -81,7 +81,7 @@ static const uint qt_meta_data_QCustomSideFrame[] = {
        0        // eod
 };
 
-void QCustomSideFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
+void QTCUSTOMSIDEFRAME::QCustomSideFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
         auto *_t = static_cast<QCustomSideFrame *>(_o);
@@ -113,13 +113,13 @@ void QCustomSideFrame::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
     }
 }
 
-const QMetaObject QCustomSideFrame::staticMetaObject = { {
+const QMetaObject QTCUSTOMSIDEFRAME::QCustomSideFrame::staticMetaObject = { {
     QMetaObject::SuperData::link<QFrame::staticMetaObject>(),
-    qt_meta_stringdata_QCustomSideFrame.offsetsAndSize,
-    qt_meta_data_QCustomSideFrame,
+    qt_meta_stringdata_QTCUSTOMSIDEFRAME__QCustomSideFrame.offsetsAndSize,
+    qt_meta_data_QTCUSTOMSIDEFRAME__QCustomSideFrame,
     qt_static_metacall,
     nullptr,
-qt_incomplete_metaTypeArray<qt_meta_stringdata_QCustomSideFrame_t
+qt_incomplete_metaTypeArray<qt_meta_stringdata_QTCUSTOMSIDEFRAME__QCustomSideFrame_t
 , QtPrivate::TypeAndForceComplete<QCustomSideFrame, std::true_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 , QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<QEvent *, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>, QtPrivate::TypeAndForceComplete<void, std::false_type>
 
@@ -129,20 +129,20 @@ qt_incomplete_metaTypeArray<qt_meta_stringdata_QCustomSideFrame_t
 } };
 
 
-const QMetaObject *QCustomSideFrame::metaObject() const
+const QMetaObject *QTCUSTOMSIDEFRAME::QCustomSideFrame::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->dynamicMetaObject() : &staticMetaObject;
 }
 
-void *QCustomSideFrame::qt_metacast(const char *_clname)
+void *QTCUSTOMSIDEFRAME::QCustomSideFrame::qt_metacast(const char *_clname)
 {
     if (!_clname) return nullptr;
-    if (!strcmp(_clname, qt_meta_stringdata_QCustomSideFrame.stringdata0))
+    if (!strcmp(_clname, qt_meta_stringdata_QTCUSTOMSIDEFRAME__QCustomSideFrame.stringdata0))
         return static_cast<void*>(this);
     return QFrame::qt_metacast(_clname);
 }
 
-int QCustomSideFrame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int QTCUSTOMSIDEFRAME::QCustomSideFrame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QFrame::qt_metacall(_c, _id, _a);
     if (_id < 0)
@@ -160,13 +160,13 @@ int QCustomSideFrame::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void QCustomSideFrame::DrawerOpened()
+void QTCUSTOMSIDEFRAME::QCustomSideFrame::DrawerOpened()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 
 // SIGNAL 1
-void QCustomSideFrame::DrawerClosed()
+void QTCUSTOMSIDEFRAME::QCustomSideFrame::DrawerClosed()
 {
     QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }

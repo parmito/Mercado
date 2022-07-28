@@ -77,7 +77,7 @@ public:
     QLabel *m_LabelDate_HL;
     QLabel *m_LabelLocal_HL;
     QLabel *m_Logo;
-    QCustomSideFrame *m_SideMenu_Frame;
+    QTCUSTOMSIDEFRAME::QCustomSideFrame *m_SideMenu_Frame;
     QLabel *m_label_Mercado;
     QPushButton *m_pushButton_GraficoPrecos;
     QLabel *m_Logo_2;
@@ -529,7 +529,7 @@ public:
         m_Logo->setLineWidth(1);
         m_Logo->setPixmap(QPixmap(QString::fromUtf8(":/rc/android/assets/img/trolley.png")));
         m_Logo->setScaledContents(true);
-        m_SideMenu_Frame = new QCustomSideFrame(centralwidget);
+        m_SideMenu_Frame = new QTCUSTOMSIDEFRAME::QCustomSideFrame(centralwidget);
         m_SideMenu_Frame->setObjectName(QString::fromUtf8("m_SideMenu_Frame"));
         m_SideMenu_Frame->setGeometry(QRect(0, 0, 0, 728));
         sizePolicy.setHeightForWidth(m_SideMenu_Frame->sizePolicy().hasHeightForWidth());

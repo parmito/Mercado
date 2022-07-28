@@ -8,6 +8,8 @@
 #include <QEvent>
 #include <QGestureEvent>
 
+namespace QTCUSTOMSIDEFRAME
+{
 typedef enum {
     enOPENED_DRAWER,
     enCLOSED_DRAWER
@@ -46,5 +48,5 @@ private:
     /*void SideMenuAnimation(tenCustomSideFrameStatus status);*/
     tenDrawerTrendingMovement enDrawerTrendingMovement;
 };
-
+}
 #endif // QCUSTOMSIDEFRAME_H

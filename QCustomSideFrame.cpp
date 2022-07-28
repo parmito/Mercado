@@ -1,5 +1,7 @@
 #include "QCustomSideFrame.h"
 
+using namespace QTCUSTOMSIDEFRAME;
+
 QCustomSideFrame::QCustomSideFrame(QWidget *parent)
     :QFrame(parent)
 {
